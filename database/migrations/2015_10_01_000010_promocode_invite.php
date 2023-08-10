@@ -10,16 +10,10 @@ return new class extends Migration
 {
     public function up()
     {
-        $model = config('promocode.models.stripe');
+        $model = config('promocode.models.invite');
 
         Schema::create((new $model)->getTable(), function (Blueprint $table) {
             self::create($table);
-        });
-
-        Schema::table((new $model)->getTable(), function (Blueprint $table) {
-            $table->integer('description_discount_percentage')->after('description')->nullable();
-            $table->integer('description_discount_amount_cents')->after('description_discount_percentage')->nullable();
-            $table->string('stripe_coupon_id')->after('expires_at');
         });
     }
 

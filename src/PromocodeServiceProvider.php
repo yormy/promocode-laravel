@@ -4,7 +4,6 @@ namespace Yormy\PromocodeLaravel;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-use jdavidbakr\MailTracker\MailTracker;
 use Yormy\PromocodeLaravel\ServiceProviders\EventServiceProvider;
 use Yormy\PromocodeLaravel\ServiceProviders\RouteServiceProvider;
 
@@ -24,8 +23,6 @@ class PromocodeServiceProvider extends ServiceProvider
         $this->registerCommands();
 
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-
-        $this->registerListeners();
 
         $this->registerTranslations();
 
@@ -56,7 +53,7 @@ class PromocodeServiceProvider extends ServiceProvider
             ], 'migrations');
 
             $this->publishes([
-                __DIR__.'/../resources/lang' => resource_path('lang/vendor/chaski'),
+                __DIR__.'/../resources/lang' => resource_path('lang/vendor/promocodes'),
             ], 'translations');
         }
     }
@@ -69,11 +66,6 @@ class PromocodeServiceProvider extends ServiceProvider
         }
     }
 
-    public function registerListeners(): void
-    {
-        //        $this->app['events']->listen(XxxEvent::class, XxxListener::class);
-    }
-
     public function registerTranslations(): void
     {
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'promocode');
@@ -81,17 +73,6 @@ class PromocodeServiceProvider extends ServiceProvider
 
     private function morphMaps(): void
     {
-        //        $logModelpath = config('chaski.models.log');
-        //        $sections = explode('\\', $logModelpath);
-        //        $LogModelName = end($sections);
-        //
-        //        $blockModelpath = config('chaski.models.block');
-        //        $sections = explode('\\', $blockModelpath);
-        //        $blockModelName = end($sections);
-        //
-        //        Relation::enforceMorphMap([
-        //            $LogModelName => $logModelpath,
-        //            $blockModelName => $blockModelpath,
-        //        ]);
+
     }
 }

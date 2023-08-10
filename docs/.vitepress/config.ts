@@ -22,7 +22,7 @@ export default defineConfig({
       {
         text: 'Introduction',
         items: [
-          { text: 'What is Promocode', link: '/v1/introduction/what-is-promocode]' },
+          { text: 'What is Promocode', link: '/v1/introduction/what-is-promocode' },
           { text: 'Definitions', link: '/v1/definitions.md' },
           { text: 'Need Support?', link: '/general/support/support-me' },
         ]

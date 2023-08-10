@@ -52,8 +52,7 @@
 
         "---------- TESTS ---------- ": "",
         "test:all": "vendor/bin/paratest",
-        "t": "vendor/bin/phpunit --testdox --group chaski-unsubscribe",
-        "t:unit": "vendor/bin/phpunit --colors=always --testdox --testsuite Unit",
+        "t": "vendor/bin/phpunit --testdox",
         "test:unit": "vendor/bin/paratest --colors=always --testdox --testsuite Unit",
 
         "t:main": "vendor/bin/phpunit --colors=always --testdox --testsuite Main",

@@ -1,15 +1,10 @@
-# Chaski Laravel
+# Promocodes Laravel
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/yormy/promocode-laravel.svg?style=flat-square)](https://packagist.org/packages/yormy/promocode-laravel)
 [![Total Downloads](https://img.shields.io/packagist/dt/yormy/promocode-laravel.svg?style=flat-square)](https://packagist.org/packages/yormy/promocode-laravel)
 
-# Chaski
-```Chaskis were short-distance relay runners who delivered official messages and sometimes small parcels throughout the empire. Young men, especially those with superior running skills, were chosen for this occupation```
-
-Chaski is a message extension with many different additional features like:
-* Subscription
-* Translations
-* Tracking
+# Promocodes
+Easy add friendly promocodes to cashier or your registrations
 
 # [Click for Documentation](https://yormy.github.io/promocode-laravel/)
 

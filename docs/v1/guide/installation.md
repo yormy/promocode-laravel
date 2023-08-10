@@ -1,6 +1,6 @@
 # Installation
 
-Chaski can be installed through composer
+Promocodes can be installed through composer
 ```bash
 composer require yormy/promocode-laravel
 ```

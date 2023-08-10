@@ -2,6 +2,6 @@
 
 namespace Yormy\PromocodeLaravel\Exceptions;
 
-class InvalidValueException extends \Exception
+class InvalidCodeException extends \Exception
 {
 }

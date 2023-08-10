@@ -5,10 +5,12 @@ namespace Yormy\PromocodeLaravel\Services;
 class CodeGenerator
 {
     const TYPE_NUMERIC = 1;
-    const TYPE_NUMERIC_ALPHA_UPPERCASE = 2;
-    const TYPE_NUMERIC_ALPHA_LOWERCASE = 3;
-    const TYPE_NUMERIC_ALPHA_UPPERLOWERCASE = 4;
 
+    const TYPE_NUMERIC_ALPHA_UPPERCASE = 2;
+
+    const TYPE_NUMERIC_ALPHA_LOWERCASE = 3;
+
+    const TYPE_NUMERIC_ALPHA_UPPERLOWERCASE = 4;
 
     public static function generate(int $type, int $length = 6): string
     {
@@ -35,6 +37,7 @@ class CodeGenerator
         for ($i = 0; $i < $length; $i++) {
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
+
         return $randomString;
     }
 }
