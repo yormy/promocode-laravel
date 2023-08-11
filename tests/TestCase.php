@@ -9,11 +9,10 @@ use Yormy\PromocodeLaravel\PromocodeServiceProvider;
 
 abstract class TestCase extends BaseTestCase
 {
-    //use RefreshDatabase;
+    use RefreshDatabase;
 
     protected function setUp(): void
     {
-
         parent::setUp();
 
         $this->setUpConfig();

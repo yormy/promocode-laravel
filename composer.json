@@ -53,13 +53,7 @@
         "---------- TESTS ---------- ": "",
         "test:all": "vendor/bin/paratest",
         "t": "vendor/bin/phpunit --testdox",
-        "test:unit": "vendor/bin/paratest --colors=always --testdox --testsuite Unit",
-
-        "t:main": "vendor/bin/phpunit --colors=always --testdox --testsuite Main",
-        "test:main": "vendor/bin/paratest --colors=always --testdox --testsuite Main",
-
-        "test-browser": "vendor/bin/phpunit tests/Browser --colors=always --testdox",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
+        "test:unit": "vendor/bin/phpunit --colors=always --testdox --testsuite Unit",
         "post-autoload-dump": [
             "@php ./vendor/bin/testbench package:discover --ansi"
         ],
