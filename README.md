@@ -14,4 +14,3 @@ Easy add friendly promocodes to cashier or your registrations
 ## License
 
 The MIT License (MIT). Please see [License File]((https://yormy.github.io/promocode-laravel/general/license.html) for more information.
-
