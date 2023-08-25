@@ -6,15 +6,26 @@ use Yormy\PromocodeLaravel\Exceptions\InvalidCodeException;
 
 abstract class PromocodeValidate
 {
-    public static function check(string $code)
+    public static function check(?string $code)
     {
-        $promocode = static::builderActive($code)
-            ->get()
-            ->first();
+        $promocode = self::getValid($code);
 
         if (! $promocode) {
             throw new InvalidCodeException();
         }
+
+        return $promocode;
+    }
+
+    public static function getValid(?string $code)
+    {
+        if (!$code) {
+            return null;
+        }
+
+        $promocode = static::builderActive($code)
+            ->get()
+            ->first();
 
         return $promocode;
     }
