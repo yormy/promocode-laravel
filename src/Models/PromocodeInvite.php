@@ -35,6 +35,7 @@ class PromocodeInvite extends BaseModel
 
         'active_from',
         'expires_at',
+        'max_uses',
 
         'for_user_id',
         'for_user_type',
