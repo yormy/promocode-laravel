@@ -5,6 +5,7 @@ namespace Yormy\PromocodeLaravel\Models;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Yormy\CoreToolsLaravel\Traits\Factories\PackageFactoryTrait;
 use Yormy\PromocodeLaravel\Models\Scopes\AvailableScope;
+use Yormy\PromocodeLaravel\Services\CodeGenerator;
 use Yormy\Xid\Models\Traits\Xid;
 
 /**
@@ -46,4 +47,12 @@ class PromocodeInvite extends BaseModel
         'for_email',
         'for_ip',
     ];
+
+    public static function generate(): string
+    {
+        $length = config('promocode.invite.length');
+        $type = config('promocode.invite.type');
+
+        return CodeGenerator::generate($type, $length);
+    }
 }

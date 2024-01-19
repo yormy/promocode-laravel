@@ -19,7 +19,7 @@ class PromocodeInviteFactory extends Factory
             'xid' => XidService::generate(),
 
             'internal_name' => $this->faker->word,
-            'code' => CodeGenerator::generate(),
+            'code' => PromocodeInvite::generate(),
             'description' => $this->faker->text,
             'active_from' => Carbon::now(),
             'expires_at' => null,
