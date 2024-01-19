@@ -21,7 +21,7 @@ class PromocodeInviteFactory extends Factory
             'internal_name' => $this->faker->word,
             'code' => CodeGenerator::generate(),
             'description' => $this->faker->text,
-            'active_from' => null,
+            'active_from' => Carbon::now(),
             'expires_at' => null,
             'max_uses' => 1,
 
