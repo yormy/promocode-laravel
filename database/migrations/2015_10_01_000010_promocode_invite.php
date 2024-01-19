@@ -19,7 +19,7 @@ return new class extends Migration
 
     public static function create(Blueprint $table): Blueprint
     {
-        $table->id();
+        $table->string('xid')->unique();
         $table->string('internal_name')->nullable();
         $table->string('description')->nullable();
 
@@ -35,7 +35,7 @@ return new class extends Migration
         $table->string('for_email')->nullable();
 
         // only within period
-        $table->datetime('active_from');
+        $table->datetime('active_from')->nullable();
         $table->datetime('expires_at')->nullable();
 
         $table->timestamps();

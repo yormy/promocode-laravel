@@ -26,6 +26,7 @@ return new class extends Migration
     public static function create(Blueprint $table): Blueprint
     {
         $table->id();
+        $table->string('xid')->unique();
         $table->string('internal_name')->nullable();
         $table->string('description')->nullable();
 

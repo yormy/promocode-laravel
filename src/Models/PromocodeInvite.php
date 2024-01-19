@@ -3,7 +3,9 @@
 namespace Yormy\PromocodeLaravel\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Yormy\CoreToolsLaravel\Traits\Factories\PackageFactoryTrait;
 use Yormy\PromocodeLaravel\Models\Scopes\AvailableScope;
+use Yormy\Xid\Models\Traits\Xid;
 
 /**
  * Yormy\PromocodeLaravel\Models\PromocodeInvite
@@ -25,6 +27,8 @@ class PromocodeInvite extends BaseModel
 {
     use AvailableScope;
     use SoftDeletes;
+    use PackageFactoryTrait;
+    use Xid;
 
     protected $table = 'promocode_invite';
 

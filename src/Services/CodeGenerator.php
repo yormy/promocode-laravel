@@ -12,7 +12,7 @@ class CodeGenerator
 
     const TYPE_NUMERIC_ALPHA_UPPERLOWERCASE = 4;
 
-    public static function generate(int $type, int $length = 6): string
+    public static function generate(int $type = self::TYPE_NUMERIC_ALPHA_UPPERCASE, int $length = 6): string
     {
         switch ($type) {
             case static::TYPE_NUMERIC:

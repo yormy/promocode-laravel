@@ -3,7 +3,9 @@
 namespace Yormy\PromocodeLaravel\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Yormy\CoreToolsLaravel\Traits\Factories\PackageFactoryTrait;
 use Yormy\PromocodeLaravel\Models\Scopes\AvailableScope;
+use Yormy\Xid\Models\Traits\Xid;
 
 /**
  * Yormy\PromocodeLaravel\Models\BillingPromocodeStripe
@@ -25,6 +27,8 @@ class BillingPromocodeStripe extends BaseModel
 {
     use AvailableScope;
     use SoftDeletes;
+    use Xid;
+    use PackageFactoryTrait;
 
     protected $table = 'billing_promocode_stripe';
 
