@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabaseState;
 use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Yormy\PromocodeLaravel\PromocodeServiceProvider;
+use Yormy\AssertLaravel\Helpers\AssertJsonMacros;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -16,9 +17,14 @@ abstract class TestCase extends BaseTestCase
     {
         parent::setUp();
 
-        $this->setUpConfig();
+        TestConfig::setup();
 
-        $this->setupRoutes();
+        $this->withoutExceptionHandling();
+
+        TestRoutes::setup();
+
+        AssertJsonMacros::register();
+
     }
 
     protected function getPackageProviders($app)
@@ -28,22 +34,6 @@ abstract class TestCase extends BaseTestCase
         ];
     }
 
-    protected function setUpConfig(): void
-    {
-        config(['promocode' => require __DIR__.'/../config/promocode.php']);
-        config(['app.key' => 'base64:yNmpwO5YE6xwBz0enheYLBDslnbslodDqK1u+oE5CEE=']);
-    }
-
-
-    protected function setupRoutes()
-    {
-        Route::prefix('admin2/')
-            ->name('api.v1.admin.')
-            ->middleware('api')
-            ->group(function () {
-                Route::PromocodesApiV1();
-            });
-    }
 
     protected function refreshTestDatabase()
     {
