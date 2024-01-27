@@ -47,13 +47,13 @@ class InviteCodeData extends Data
             active_from: CarbonImmutable::parse($model->active_from),
             expires_at: CarbonImmutable::parse($model->expires_at),
 
-            for_user_id: $model->for_user_id,
+            for_user_id: (int)$model->for_user_id,
             for_ip: $model->for_ip,
             for_email: $model->for_email,
 
             xid: Lazy::create(fn() => $model->xid),
-            uses_current: Lazy::create(fn() => $model->uses_current),
-            uses_left: Lazy::create(fn() => $model->uses_left),
+            uses_current: Lazy::create(fn() => (int)$model->uses_current),
+            uses_left: Lazy::create(fn() => (int)$model->uses_left),
             is_active: Lazy::create(fn() => (bool)$model->is_active),
             is_available: Lazy::create(fn() => (bool)$model->is_available),
 
