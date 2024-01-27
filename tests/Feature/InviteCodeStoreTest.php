@@ -35,19 +35,22 @@ class InviteCodeStoreTest extends TestCase
      */
     public function InviteCode_Create_Success(): void
     {
+        $code = '654543';
         $data = $this->getPostData();
-        unset($data['code']);
+        //unset($data['code']);
+        $data['code'] = $code;
 
         $response = $this->json('POST', route(static::ROUTE_STORE, $data));
 
         $response->assertSuccessful();
-        $response->assertJsonDataArrayHasElement('code', '123456');
+        $response->assertJsonDataItemHasElement('code', $code);
     }
 
     // ---------- HELPERS ----------
     private function getPostData()
     {
         $data = [
+            'xid' => 'hhhhhh',
             'internal_name' => 'Christmas bonus',
             'description' => 'description',
             'code'=> 'WWWW11',

@@ -22,11 +22,13 @@ class InviteCodeData extends Data
         public ?string $for_ip,
         public ?string $for_email,
 
-//        public Lazy | string $xid,
+        public Lazy | string | null $xid,
         public Lazy | int $uses_current,
         public Lazy | int $uses_left,
         public Lazy | bool $is_active,
         public Lazy | bool $is_available,
+
+        public Lazy | CarbonImmutable | null $deleted_at,
     ) {
 
         $this->code = $code ?? CodeGenerator::generate(CodeGenerator::TYPE_NUMERIC_ALPHA_UPPERCASE, 7);
@@ -50,11 +52,13 @@ class InviteCodeData extends Data
             for_ip: $model->for_ip,
             for_email: $model->for_email,
 
-           // xid: Lazy::create(fn() => $model->xid),
+            xid: Lazy::create(fn() => $model->xid),
             uses_current: Lazy::create(fn() => $model->uses_current),
             uses_left: Lazy::create(fn() => $model->uses_left),
             is_active: Lazy::create(fn() => $model->is_active),
             is_available: Lazy::create(fn() => $model->is_available),
+
+            deleted_at: Lazy::create(fn() => $model->deleted_at),
         );
     }
 
@@ -79,14 +83,16 @@ class InviteCodeData extends Data
     public function withCalculated()
     {
         return $this
-        //    ->include('xid')
+            ->include('xid')
             ->include('uses_current')
+            ->include('deleted_at')
+
             ->include('uses_left')
             ->include('is_active')
             ->include('is_available');
     }
 
-    public function asOutput()
+    public function asResource()
     {
         return $this->withCalculated()->toArray();
     }

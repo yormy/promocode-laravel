@@ -21,7 +21,7 @@ use Yormy\PromocodeLaravel\Tests\TestCase;
 // -- expired
 // -- no uses left
 // --
-class InviteCodeTest extends TestCase
+class InviteCodeIndexTest extends TestCase
 {
     use RouteHelperTrait;
 

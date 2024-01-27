@@ -22,14 +22,13 @@ class InviteCodeController
 
     public function store(InviteCodeData $data)
     {
+
         $promocodeInviteRepository= new PromocodeInviteRepository();
         $new = $promocodeInviteRepository->create($data);
 
-        $dto = InviteCodeData::fromModel($new)->asOutput();
+        $dto = InviteCodeData::fromModel($new)->asResource();
 
-dd($dto);
-
-        return ApiResponse::withData($inviteCodes)->successResponse();
+        return ApiResponse::withData($dto)->successResponse();
     }
 
 }
