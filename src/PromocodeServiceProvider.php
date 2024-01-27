@@ -5,8 +5,8 @@ namespace Yormy\PromocodeLaravel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-use Yormy\PromocodeLaravel\Routes\Api\V1\Admin\AdminApiRoutes;
 use Yormy\PromocodeLaravel\ServiceProviders\EventServiceProvider;
+use Yormy\PromocodeLaravel\ServiceProviders\RouteServiceProvider;
 
 class PromocodeServiceProvider extends ServiceProvider
 {
@@ -29,8 +29,6 @@ class PromocodeServiceProvider extends ServiceProvider
 
         $this->morphMaps();
 
-        $this->setupRouteMacros();
-
         Model::shouldBeStrict();
     }
 
@@ -43,12 +41,7 @@ class PromocodeServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(static::CONFIG_IDE_HELPER_FILE, 'ide-helper');
 
         $this->app->register(EventServiceProvider::class);
-    //    $this->app->register(RouteServiceProvider::class);
-    }
-
-    private function setupRouteMacros()
-    {
-        AdminApiRoutes::macro();
+        $this->app->register(RouteServiceProvider::class);
     }
 
     private function publish(): void

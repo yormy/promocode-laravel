@@ -3,7 +3,7 @@
 namespace Yormy\PromocodeLaravel\ServiceProviders;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Yormy\PromocodeLaravel\Routes\GuestRoutes;
+use Yormy\PromocodeLaravel\Routes\Api\V1\Admin\AdminApiRoutes;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -28,6 +28,6 @@ class RouteServiceProvider extends ServiceProvider
 
     protected function mapApiRoutes(): void
     {
-       // AdminApiRoutes::register();
+       AdminApiRoutes::register();
     }
 }
