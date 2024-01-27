@@ -22,7 +22,6 @@ class InviteCodeController
 
     public function store(InviteCodeData $data)
     {
-
         $promocodeInviteRepository= new PromocodeInviteRepository();
         $new = $promocodeInviteRepository->create($data);
 

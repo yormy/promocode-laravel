@@ -30,8 +30,7 @@ class InviteCodeData extends Data
 
         public Lazy | CarbonImmutable | null $deleted_at,
     ) {
-
-        $this->code = $code ?? CodeGenerator::generate(CodeGenerator::TYPE_NUMERIC_ALPHA_UPPERCASE, 7);
+        $this->code = $code ?? CodeGenerator::generate(CodeGenerator::TYPE_NUMERIC_ALPHA_UPPERCASE, 9);
         $this->active_from = $active_from ?? CarbonImmutable::now();
         $this->expires_at = $expires_at ?? CarbonImmutable::now()->addMonth(1);
         $this->uses_max = $uses_max ?? 10;
@@ -66,8 +65,7 @@ class InviteCodeData extends Data
     {
         $rules['internal_name'] = ['required', 'string', 'max:100'];
         $rules['description'] = ['required', 'string', 'max:100'];
-        $rules['code'] = ['unique:promocodes_invites,code', 'string', 'max:100'];
-        //$rules['code'] = ['required', 'string', 'max:6']; // only on update ??
+        $rules['code'] = ['unique:promocodes_invites,code', 'string', 'max:9'];
 
         $rules['uses_max'] = ['required', 'integer', 'min:0','max:10000'];
         $rules['active_from'] = ['required', 'date'];
@@ -80,7 +78,7 @@ class InviteCodeData extends Data
         return $rules;
     }
 
-    public function withCalculated()
+    public function withExtended()
     {
         return $this
             ->include('xid')
@@ -94,7 +92,7 @@ class InviteCodeData extends Data
 
     public function asResource()
     {
-        return $this->withCalculated()->toArray();
+        return $this->withExtended()->toArray();
     }
 
 }
