@@ -32,7 +32,13 @@ class PromocodeInvite extends BaseModel
     use PackageFactoryTrait;
     use Xid;
 
-    protected $table = 'promocode_invite';
+    protected $table = 'promocodes_invites';
+
+    protected $appends = [
+        'is_active',
+        'is_available',
+        'uses_left',
+    ];
 
     protected $fillable = [
         'internal_name',
@@ -52,6 +58,8 @@ class PromocodeInvite extends BaseModel
     protected $casts = [
         'is_active' => 'boolean',
         'is_available' => 'boolean',
+        'active_from' => 'datetime',
+        'expires_at' => 'datetime',
     ];
 
     public static function generate(): string
