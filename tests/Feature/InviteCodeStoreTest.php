@@ -20,62 +20,8 @@ use Yormy\PromocodeLaravel\Tests\TestCase;
 // -- expired
 // -- no uses left
 // --
-class InviteCodeStoreTest extends TestCase
+class InviteCodeStoreTest extends BaseCodeStoreTest
 {
-    use RouteHelperTrait;
-
     const ROUTE_STORE = 'api.v1.admin.promocodes.invites.store';
-
-
-    /**
-     * @test
-     *
-     * @group xxx
-     */
-    public function InviteCode_Create_Success(): void
-    {
-        $code = '654543';
-        $data = $this->getPostData();
-        //unset($data['code']);
-        $data['code'] = $code;
-
-        $response = $this->json('POST', route(static::ROUTE_STORE, $data));
-
-        $response->assertSuccessful();
-        $response->assertJsonDataItemNotHasElement('xid', $data['xid']);
-        $response->assertJsonDataItemHasElement('code', $code);
-        $response->assertJsonDataItemHasElement('uses_current', 0);
-        $response->assertJsonDataItemHasElement('uses_left', $data['uses_max']);
-        $response->assertJsonDataItemHasElement('is_available', true);
-        $response->assertJsonDataItemHasElement('is_active', true);
-
-        $response->assertJsonDataItemHasElement('internal_name', $data['internal_name']);
-        $response->assertJsonDataItemHasElement('for_user_id', $data['for_user_id']);
-        $response->assertJsonDataItemHasElement('for_ip', $data['for_ip']);
-        $response->assertJsonDataItemHasElement('for_email', $data['for_email']);
-        $response->assertJsonDataItemHasElement('active_from', $data['active_from']);
-        $response->assertJsonDataItemHasElement('expires_at', $data['expires_at']);
-    }
-
-    // ---------- HELPERS ----------
-    private function getPostData()
-    {
-        $data = [
-            'xid' => '1111',
-            'internal_name' => 'Christmas bonus',
-            'description' => 'description',
-            'code'=> 'WWWW11',
-            'uses_max'=> 10,
-            'uses_current'=> 2,
-            'uses_left'=> 1,
-            'for_user_id'=> 1,
-            'for_ip'=> '127.0.0.1',
-            'for_email'=> 'example@example.com',
-            'active_from'=> '2020-01-01 10:10:10',
-            'expires_at'=> '2026-12-12 10:10:10',
-        ];
-
-        return $data;
-    }
 
 }
