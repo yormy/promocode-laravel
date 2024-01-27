@@ -99,7 +99,7 @@ class PromocodeDto
 
         $data = [
             'code' => $code,
-            'max_uses' => $this?->maxUses ?? 1,
+            'uses_max' => $this?->maxUses ?? 1,
         ];
 
         if (isset($this->expiresAt)) {

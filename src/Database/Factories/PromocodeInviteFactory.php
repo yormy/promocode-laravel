@@ -23,7 +23,7 @@ class PromocodeInviteFactory extends Factory
             'description' => $this->faker->text,
             'active_from' => Carbon::now(),
             'expires_at' => null,
-            'max_uses' => 1,
+            'uses_max' => 1,
 
             'for_user_id' => null,
             'for_user_type' => null,
@@ -63,7 +63,7 @@ class PromocodeInviteFactory extends Factory
     {
         return $this->state(function (int $uses) {
             return [
-                'max_uses' => $uses,
+                'uses_max' => $uses,
             ];
         });
     }

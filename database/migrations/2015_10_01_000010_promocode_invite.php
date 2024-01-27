@@ -26,8 +26,8 @@ return new class extends Migration
 
         $table->string('code', 20)->unique();
 
-        $table->integer('max_uses')->default(1);
-        $table->integer('current_uses')->default(0);
+        $table->integer('uses_max')->default(1);
+        $table->integer('uses_current')->default(0);
 
         // Limit who can use it
         $table->unsignedBigInteger('for_user_id')->nullable();

@@ -2,7 +2,9 @@
 
 namespace Yormy\PromocodeLaravel\Tests\Feature;
 
+use Illuminate\Support\Carbon;
 use Yormy\AssertLaravel\Traits\RouteHelperTrait;
+use Yormy\PromocodeLaravel\Models\PromocodeInvite;
 use Yormy\PromocodeLaravel\Tests\TestCase;
 
 // Add new code cannot be duplicate, not in deleted either
@@ -19,24 +21,28 @@ use Yormy\PromocodeLaravel\Tests\TestCase;
 // -- expired
 // -- no uses left
 // --
-class InviteCodeTest extends TestCase
+class InviteCodeStoreTest extends TestCase
 {
     use RouteHelperTrait;
 
-    const ROUTE_INDEX = 'api.v1.admin.promocodes.invites.index';
+    const ROUTE_CREATE = 'api.v1.admin.promocodes.invites.store';
 
 
     /**
      * @test
      *
-     * @group xxx
+     * @group promocode-invite
      */
-    public function TestTest(): void
+    public function InviteCode_Index_HasAll(): void
     {
-        $response = $this->json('GET', route(static::ROUTE_INDEX));
-        $response->assertSuccessful();
+        PromocodeInvite::factory()->create(['code' => 'ABCDEF']);
+        PromocodeInvite::factory()->create(['code' => '123456']);
 
-        dd($response->getContent());
+        $response = $this->json('GET', route(static::ROUTE_INDEX));
+
+        $response->assertSuccessful();
+        $response->assertJsonDataArrayHasElement('code', 'ABCDEF');
+        $response->assertJsonDataArrayHasElement('code', '123456');
     }
 
 }

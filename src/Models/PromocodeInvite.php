@@ -3,6 +3,7 @@
 namespace Yormy\PromocodeLaravel\Models;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 use Yormy\CoreToolsLaravel\Traits\Factories\PackageFactoryTrait;
 use Yormy\PromocodeLaravel\Models\Scopes\AvailableScope;
 use Yormy\PromocodeLaravel\Services\CodeGenerator;
@@ -40,12 +41,17 @@ class PromocodeInvite extends BaseModel
 
         'active_from',
         'expires_at',
-        'max_uses',
+        'uses_max',
 
         'for_user_id',
         'for_user_type',
         'for_email',
         'for_ip',
+    ];
+
+    protected $casts = [
+        'is_active' => 'boolean',
+        'is_available' => 'boolean',
     ];
 
     public static function generate(): string
@@ -54,5 +60,20 @@ class PromocodeInvite extends BaseModel
         $type = config('promocode.invite.type');
 
         return CodeGenerator::generate($type, $length);
+    }
+
+    public function getUsesLeftAttribute() : int
+    {
+        return max($this->uses_max - $this->uses_current, 0);
+    }
+
+    public function getIsActiveAttribute() : int
+    {
+        return $this->active_from <= Carbon::now() && ( $this->expires_at > Carbon::now() || $this->expires_at === null);
+    }
+
+    public function getIsAvailableAttribute() : int
+    {
+        return $this->is_active && $this->uses_left > 0 ;
     }
 }

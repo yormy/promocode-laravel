@@ -20,12 +20,12 @@ class BaseModel extends Model
 
     public function redeem()
     {
-        $this->increment('current_uses');
+        $this->increment('uses_current');
     }
 
     public function prunable(): Builder
     {
-        return static::whereColumn('max_uses', '=<', 'current_uses')
+        return static::whereColumn('uses_max', '=<', 'uses_current')
             ->orWhere('expires_at', '<', now());
     }
 }

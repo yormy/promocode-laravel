@@ -20,7 +20,7 @@ trait AvailableScope
     public function scopeAvailable(Builder $builder): Builder
     {
         return $builder
-            ->whereColumn('max_uses', '>', 'current_uses');
+            ->whereColumn('uses_max', '>', 'uses_current');
     }
 
     public function scopeForUser(Builder $builder, $user): Builder

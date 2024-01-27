@@ -93,7 +93,7 @@ class ValidateCodesTest extends TestCase
             ->toArray();
         $promocodeStripe = BillingPromocodeStripe::create($data);
 
-        $promocodeStripe->current_uses = 1;
+        $promocodeStripe->uses_current = 1;
         $promocodeStripe->save();
 
         $this->expectException(InvalidCodeException::class);
