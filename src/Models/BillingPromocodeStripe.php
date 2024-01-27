@@ -30,7 +30,7 @@ class BillingPromocodeStripe extends BaseModel
     use Xid;
     use PackageFactoryTrait;
 
-    protected $table = 'billing_promocode_stripe';
+    protected $table = 'billing_promocodes_stripe';
 
     protected $fillable = [
         'internal_name',
