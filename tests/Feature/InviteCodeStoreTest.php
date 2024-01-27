@@ -25,24 +25,43 @@ class InviteCodeStoreTest extends TestCase
 {
     use RouteHelperTrait;
 
-    const ROUTE_CREATE = 'api.v1.admin.promocodes.invites.store';
+    const ROUTE_STORE = 'api.v1.admin.promocodes.invites.store';
 
 
     /**
      * @test
      *
-     * @group promocode-invite
+     * @group xxx
      */
-    public function InviteCode_Index_HasAll(): void
+    public function InviteCode_Create_Success(): void
     {
-        PromocodeInvite::factory()->create(['code' => 'ABCDEF']);
-        PromocodeInvite::factory()->create(['code' => '123456']);
+        $data = $this->getPostData();
+        unset($data['code']);
 
-        $response = $this->json('GET', route(static::ROUTE_INDEX));
+        $response = $this->json('POST', route(static::ROUTE_STORE, $data));
 
         $response->assertSuccessful();
-        $response->assertJsonDataArrayHasElement('code', 'ABCDEF');
         $response->assertJsonDataArrayHasElement('code', '123456');
+    }
+
+    // ---------- HELPERS ----------
+    private function getPostData()
+    {
+        $data = [
+            'internal_name' => 'Christmas bonus',
+            'description' => 'description',
+            'code'=> 'WWWW11',
+            'uses_max'=> 10,
+            'uses_current'=> 2,
+            'uses_left'=> 1,
+            'for_user_id'=> 1,
+            'for_ip'=> '127.0.0.1',
+            'for_email'=> 'example@example.com',
+            'active_from'=> '2020-01-01 10:10:10',
+            'expires_at'=> '2026-12-12 10:10:10',
+        ];
+
+        return $data;
     }
 
 }
