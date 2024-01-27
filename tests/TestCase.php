@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\RefreshDatabaseState;
 use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\TestCase as BaseTestCase;
+use Spatie\LaravelData\LaravelDataServiceProvider;
 use Yormy\PromocodeLaravel\PromocodeServiceProvider;
 use Yormy\AssertLaravel\Helpers\AssertJsonMacros;
 
@@ -31,6 +32,7 @@ abstract class TestCase extends BaseTestCase
     {
         return [
             PromocodeServiceProvider::class,
+            LaravelDataServiceProvider::class,
         ];
     }
 
