@@ -14,7 +14,7 @@ class AdminApiRoutes
                 ->name('promocodes.invites.')
                 ->group(function () {
                     Route::get('/', [InviteCodeController::class, 'index'])->name('index');
-//                    Route::post('/', [InviteCodeController::class, 'store'])->name('store');
+                    Route::post('/', [InviteCodeController::class, 'store'])->name('store');
 //                    Route::put('/{code_xid}', [InviteCodeController::class, 'update'])->name('update');
 //                    Route::delete('/{code_xid}', [InviteCodeController::class, 'destroy'])->name('destroy');
                 });
