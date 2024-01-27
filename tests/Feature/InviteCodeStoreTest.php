@@ -12,7 +12,6 @@ use Yormy\PromocodeLaravel\Tests\TestCase;
 // date activated cannot be in the past
 // date expired cannot be before activated
 // update max uses cannot be lower than current uses
-// auto create code
 // update code
 // update dataset
 // test registration:
@@ -43,14 +42,26 @@ class InviteCodeStoreTest extends TestCase
         $response = $this->json('POST', route(static::ROUTE_STORE, $data));
 
         $response->assertSuccessful();
+        $response->assertJsonDataItemNotHasElement('xid', $data['xid']);
         $response->assertJsonDataItemHasElement('code', $code);
+        $response->assertJsonDataItemHasElement('uses_current', 0);
+        $response->assertJsonDataItemHasElement('uses_left', $data['uses_max']);
+        $response->assertJsonDataItemHasElement('is_available', true);
+        $response->assertJsonDataItemHasElement('is_active', true);
+
+        $response->assertJsonDataItemHasElement('internal_name', $data['internal_name']);
+        $response->assertJsonDataItemHasElement('for_user_id', $data['for_user_id']);
+        $response->assertJsonDataItemHasElement('for_ip', $data['for_ip']);
+        $response->assertJsonDataItemHasElement('for_email', $data['for_email']);
+        $response->assertJsonDataItemHasElement('active_from', $data['active_from']);
+        $response->assertJsonDataItemHasElement('expires_at', $data['expires_at']);
     }
 
     // ---------- HELPERS ----------
     private function getPostData()
     {
         $data = [
-            'xid' => 'hhhhhh',
+            'xid' => '1111',
             'internal_name' => 'Christmas bonus',
             'description' => 'description',
             'code'=> 'WWWW11',

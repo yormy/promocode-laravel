@@ -55,10 +55,10 @@ class InviteCodeData extends Data
             xid: Lazy::create(fn() => $model->xid),
             uses_current: Lazy::create(fn() => $model->uses_current),
             uses_left: Lazy::create(fn() => $model->uses_left),
-            is_active: Lazy::create(fn() => $model->is_active),
-            is_available: Lazy::create(fn() => $model->is_available),
+            is_active: Lazy::create(fn() => (bool)$model->is_active),
+            is_available: Lazy::create(fn() => (bool)$model->is_available),
 
-            deleted_at: Lazy::create(fn() => $model->deleted_at),
+            deleted_at: Lazy::create(fn() => CarbonImmutable::parse($model->deleted_at)),
         );
     }
 
