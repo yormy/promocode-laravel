@@ -39,6 +39,7 @@ class BillingPromocodeStripe extends BaseModel
 
         'active_from',
         'expires_at',
+        'uses_max',
 
         'for_user_id',
         'for_user_type',
