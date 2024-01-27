@@ -4,6 +4,7 @@ namespace Yormy\PromocodeLaravel\Tests;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\RefreshDatabaseState;
+use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use Yormy\PromocodeLaravel\PromocodeServiceProvider;
 
@@ -16,6 +17,8 @@ abstract class TestCase extends BaseTestCase
         parent::setUp();
 
         $this->setUpConfig();
+
+        $this->setupRoutes();
     }
 
     protected function getPackageProviders($app)
@@ -29,6 +32,17 @@ abstract class TestCase extends BaseTestCase
     {
         config(['promocode' => require __DIR__.'/../config/promocode.php']);
         config(['app.key' => 'base64:yNmpwO5YE6xwBz0enheYLBDslnbslodDqK1u+oE5CEE=']);
+    }
+
+
+    protected function setupRoutes()
+    {
+        Route::prefix('admin2/')
+            ->name('api.v1.admin.')
+            ->middleware('api')
+            ->group(function () {
+                Route::PromocodesApiV1();
+            });
     }
 
     protected function refreshTestDatabase()

@@ -1,4 +1,4 @@
-{
+``{
     "name": "yormy/promocode-laravel",
     "description": "",
     "keywords": [
@@ -17,14 +17,24 @@
             "role": "Developer"
         }
     ],
+    "repositories" : [
+        {
+            "type": "path",
+            "url": "../dev-tools-laravel"
+        },
+        {
+            "type": "path",
+            "url": "../assert-laravel"
+        }
+    ],
     "require": {
         "php": "^8.1|^8.2",
         "jenssegers/agent": "^2.6",
         "laravel/framework": "^9|^10",
-        "yormy/core-tools-laravel": "^1.0"
+        "yormy/core-tools-laravel": "dev-master"
     },
     "require-dev": {
-        "yormy/dev-tools-laravel": "^1.0"
+        "yormy/dev-tools-laravel": "dev-master"
     },
     "autoload": {
         "psr-4": {

@@ -24,10 +24,10 @@ class RouteServiceProvider extends ServiceProvider
 
     protected function mapWebRoutes(): void
     {
-        GuestRoutes::register();
     }
 
     protected function mapApiRoutes(): void
     {
+       // AdminApiRoutes::register();
     }
 }
