@@ -5,10 +5,13 @@ namespace Yormy\PromocodeLaravel\DataObjects;
 use Carbon\CarbonImmutable;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Lazy;
+use Yormy\PromocodeLaravel\Models\PromocodeInvite;
 use Yormy\PromocodeLaravel\Services\CodeGenerator;
 
 class InviteCodeData extends Data
 {
+    const MODEL = PromocodeInvite::class;
+
     public function __construct(
         public string $internal_name,
         public string $description,
