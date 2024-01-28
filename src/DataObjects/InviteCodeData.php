@@ -66,7 +66,7 @@ class InviteCodeData extends Data
 
     public static function rules(): array
     {
-        $rules['internal_name'] = ['required', 'string', 'max:100'];
+        $rules['internal_name'] = ['required', 'integer', 'max:100'];
         $rules['description'] = ['required', 'string', 'max:100'];
         $rules['code'] = ['unique:promocodes_invites,code', 'string', 'max:9'];
 
@@ -79,6 +79,20 @@ class InviteCodeData extends Data
         $rules['for_email'] = ['sometimes', 'nullable', 'string', 'email'];
 
         return $rules;
+    }
+
+    public static function examples(): array
+    {
+        $example['internal_name'] = 'hello dolly';
+
+        return $example;
+    }
+
+    public static function descriptions(): array
+    {
+        $example['internal_name'] = 'Name just for internal use';
+
+        return $example;
     }
 
     public function withExtended()
