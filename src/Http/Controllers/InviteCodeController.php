@@ -58,6 +58,8 @@ class InviteCodeController
      * Store
      * bodyParam internal_name int required The room ID. Example: r98639bgh3
      * @bodyData internal_name Yormy\PromocodeLaravel\DataObjects\InviteCodeData
+     * @bodyData description Yormy\PromocodeLaravel\DataObjects\InviteCodeData
+     * @bodyData code Yormy\PromocodeLaravel\DataObjects\InviteCodeData
      *
      * @LaravelData Yormy\PromocodeLaravel\DataObjects\InviteCodeData
      * @ApiResponse successResponseCreated
