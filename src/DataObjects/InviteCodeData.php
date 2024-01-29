@@ -66,7 +66,7 @@ class InviteCodeData extends Data
 
     public static function rules(): array
     {
-        $rules['internal_name'] = ['required', 'integer', 'max:100'];
+        $rules['internal_name'] = ['required', 'string', 'max:100'];
         $rules['description'] = ['required', 'string', 'max:100'];
         $rules['code'] = ['unique:promocodes_invites,code', 'string', 'max:9'];
 

@@ -29,17 +29,13 @@ class InviteCodeController
      * description
      *
      * @response 200
-     * @responseDTOCollection Yormy\PromocodeLaravel\DataObjects\InviteCodeData paginate=12
+     * @ApiResponseDTOCollection Yormy\PromocodeLaravel\DataObjects\InviteCodeData
      *
      */
     public function index(Request $request)
     {
         $inviteCodes = PromocodeInvite::all();
-        //$inviteCodes = (new InviteCodeCollection($inviteCodes))->toArray($request);
-
-        $dto = InviteCodeData::collection(PromocodeInvite::paginate());
-
-        //$ar = json_decode($dto->toJson(), true);
+        $dto = InviteCodeData::collection($inviteCodes);
 
         return ApiResponse::withData($dto)->successResponse();
     }
