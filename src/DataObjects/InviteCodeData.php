@@ -10,7 +10,7 @@ use Yormy\PromocodeLaravel\Services\CodeGenerator;
 
 class InviteCodeData extends Data
 {
-    const MODEL = PromocodeInvite::class;
+    //const MODEL = PromocodeInvite::class;
 
     public function __construct(
         public string $internal_name,
@@ -91,6 +91,13 @@ class InviteCodeData extends Data
         $example['expires_at'] = '20224-12-31 00:00:00';
         $example['for_ip'] = '198.12.13.100';
         $example['for_email'] = 'welcome@example.com';
+
+        $example['xid'] = '123123!24';
+        $example['uses_current'] = '2';
+        $example['uses_left'] = '8';
+        $example['is_active'] = true;
+        $example['is_available'] = true;
+        $example['deleted_at'] = null;
 
         return $example;
     }
