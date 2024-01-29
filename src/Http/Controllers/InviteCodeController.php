@@ -24,11 +24,9 @@ class InviteCodeController
 
     /**
      * Index
-     *
-     * @ApiResponse errorResponse
-     * @ApiResponseDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeData
-     * @ApiResponseErrorClass Mexion\BedrockUsersv2\Domain\User\DataObjects\Responses\Error
-     * @ApiResponseErrorCode VALIDATION_ERROR
+     * ?????
+     * Pagination ?
+     * @ApiResponse successResponse
      */
     public function index(Request $request)
     {
