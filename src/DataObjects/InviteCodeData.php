@@ -83,7 +83,14 @@ class InviteCodeData extends Data
 
     public static function examples(): array
     {
-        $example['internal_name'] = 'hello dolly';
+        $example['internal_name'] = 'Christmas Bonus';
+        $example['description'] = 'Special 2024 christmas bonus';
+        $example['code'] = '1WQWERTR4';
+        $example['uses_max'] = '10';
+        $example['active_from'] = '20224-12-20 00:00:00';
+        $example['expires_at'] = '20224-12-31 00:00:00';
+        $example['for_ip'] = '198.12.13.100';
+        $example['for_email'] = 'welcome@example.com';
 
         return $example;
     }
