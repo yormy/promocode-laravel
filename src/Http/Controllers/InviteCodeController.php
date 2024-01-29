@@ -30,7 +30,7 @@ class InviteCodeController
      *
      * @response 200
      * @ApiResponseDTOCollection Yormy\PromocodeLaravel\DataObjects\InviteCodeData
-     *
+     * @responseFieldDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeData
      */
     public function index(Request $request)
     {
@@ -45,6 +45,7 @@ class InviteCodeController
      * Description
      * @bodyParamDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeData
      *
+     * @responseFieldDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeData
      * @ApiResponseDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeData
      * @ApiResponse successResponseCreated
      */

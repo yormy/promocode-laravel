@@ -5,13 +5,10 @@ namespace Yormy\PromocodeLaravel\DataObjects;
 use Carbon\CarbonImmutable;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Lazy;
-use Yormy\PromocodeLaravel\Models\PromocodeInvite;
 use Yormy\PromocodeLaravel\Services\CodeGenerator;
 
 class InviteCodeData extends Data
 {
-    //const MODEL = PromocodeInvite::class;
-
     public function __construct(
         public string $internal_name,
         public string $description,
@@ -83,30 +80,44 @@ class InviteCodeData extends Data
 
     public static function examples(): array
     {
-        $example['internal_name'] = 'Christmas Bonus';
-        $example['description'] = 'Special 2024 christmas bonus';
-        $example['code'] = '1WQWERTR4';
-        $example['uses_max'] = '10';
-        $example['active_from'] = '20224-12-20 00:00:00';
-        $example['expires_at'] = '20224-12-31 00:00:00';
-        $example['for_ip'] = '198.12.13.100';
-        $example['for_email'] = 'welcome@example.com';
+        $data['internal_name'] = 'Christmas Bonus';
+        $data['description'] = 'Special 2024 christmas bonus';
+        $data['code'] = '1WQWERTR4';
+        $data['uses_max'] = '10';
+        $data['active_from'] = '20224-12-20 00:00:00';
+        $data['expires_at'] = '20224-12-31 00:00:00';
+        $data['for_ip'] = '198.12.13.100';
+        $data['for_email'] = 'welcome@example.com';
 
-        $example['xid'] = '123123!24';
-        $example['uses_current'] = '2';
-        $example['uses_left'] = '8';
-        $example['is_active'] = true;
-        $example['is_available'] = true;
-        $example['deleted_at'] = null;
+        $data['xid'] = '123123!24';
+        $data['uses_current'] = '2';
+        $data['uses_left'] = '8';
+        $data['is_active'] = true;
+        $data['is_available'] = true;
+        $data['deleted_at'] = null;
 
-        return $example;
+        return $data;
     }
 
     public static function descriptions(): array
     {
-        $example['internal_name'] = 'Name just for internal use';
+        $data['internal_name'] = 'Internal name';
+        $data['description'] = '';
+        $data['code'] = 'The actual invite code';
+        $data['uses_max'] = 'How many times it can be used';
+        $data['active_from'] = '';
+        $data['expires_at'] = '';
+        $data['for_ip'] = 'Only allowed for this ip address';
+        $data['for_email'] = 'Only allowed for this email address';
 
-        return $example;
+        $data['xid'] = 'Internal id';
+        $data['uses_current'] = 'Current number of usages';
+        $data['uses_left'] = 'Usages left';
+        $data['is_active'] = 'Is active based on date';
+        $data['is_available'] = 'Is available, can be used, active and usages left';
+        $data['deleted_at'] = '';
+
+        return $data;
     }
 
     public function withExtended()
