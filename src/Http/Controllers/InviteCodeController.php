@@ -17,24 +17,31 @@ use Yormy\PromocodeLaravel\Repositories\PromocodeInviteRepository;
  * @subgroupDescription
  * Manage invite codes
  *
- * @authenticated
+ * todo:
+ * collection
+ * paginated collection
  */
 class InviteCodeController
 {
 
     /**
      * Index
-     * ?????
-     * Pagination ?
-     * @ApiResponse successResponse
+     * description
+     *
+     * @response 200
+     * @responseDTOCollection Yormy\PromocodeLaravel\DataObjects\InviteCodeData paginate=12
+     *
      */
     public function index(Request $request)
     {
         $inviteCodes = PromocodeInvite::all();
-        $inviteCodes = (new InviteCodeCollection($inviteCodes))->toArray($request);
+        //$inviteCodes = (new InviteCodeCollection($inviteCodes))->toArray($request);
 
+        $dto = InviteCodeData::collection(PromocodeInvite::paginate());
 
-        return ApiResponse::withData($inviteCodes)->successResponse();
+        //$ar = json_decode($dto->toJson(), true);
+
+        return ApiResponse::withData($dto)->successResponse();
     }
 
     /**
