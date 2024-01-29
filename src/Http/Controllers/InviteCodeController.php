@@ -11,29 +11,14 @@ use Yormy\PromocodeLaravel\Models\PromocodeInvite;
 use Yormy\PromocodeLaravel\Repositories\PromocodeInviteRepository;
 
 /**
- * TODO:
- * 1) how to specify the apiresponse result
- * 2) Couldn't get example model for Mexion\BedrockUsersv2\Domain\Agreement\Models\UserTerm via factoryCreate.
- * 3) Create a DTO without activate being in there
+ * @group Promocodes
+ *
+ * @subgroup Invite
+ * @subgroupDescription
+ * Manage invite codes
+ *
+ * @authenticated
  */
-
-//* @apiResource Yormy\PromocodeLaravel\Http\Controllers\Resources\InviteCodeResource
-//* @apiResourceModel Yormy\PromocodeLaravel\Models\PromocodeInvite
-//
-///**
-// * @group Promocodes
-// *  description here
-// *
-// * <small class="badge badge-green">badge</small>
-// *
-// * @subgroup Invite
-// * @subgroupDescription
-// * Subgroup Terms and Conditions: Add Update Activate
-// *
-// * <small class="badge badge-green">badge</small>
-// *
-// * @authenticated
-// */
 class InviteCodeController
 {
 
