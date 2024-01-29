@@ -19,29 +19,29 @@ use Yormy\PromocodeLaravel\Repositories\PromocodeInviteRepository;
 
 //* @apiResource Yormy\PromocodeLaravel\Http\Controllers\Resources\InviteCodeResource
 //* @apiResourceModel Yormy\PromocodeLaravel\Models\PromocodeInvite
-
-/**
- * @group Promocodes
- *  description here
- *
- * <small class="badge badge-green">badge</small>
- *
- * @subgroup Invite
- * @subgroupDescription
- * Subgroup Terms and Conditions: Add Update Activate
- *
- * <small class="badge badge-green">badge</small>
- *
- * @authenticated
- */
+//
+///**
+// * @group Promocodes
+// *  description here
+// *
+// * <small class="badge badge-green">badge</small>
+// *
+// * @subgroup Invite
+// * @subgroupDescription
+// * Subgroup Terms and Conditions: Add Update Activate
+// *
+// * <small class="badge badge-green">badge</small>
+// *
+// * @authenticated
+// */
 class InviteCodeController
 {
 
     /**
      * Index
      *
-     * @LaravelData Yormy\PromocodeLaravel\DataObjects\InviteCodeData
      * @ApiResponse errorResponse
+     * @ApiResponseDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeData
      * @ApiResponseErrorClass Mexion\BedrockUsersv2\Domain\User\DataObjects\Responses\Error
      * @ApiResponseErrorCode VALIDATION_ERROR
      */
@@ -54,16 +54,12 @@ class InviteCodeController
         return ApiResponse::withData($inviteCodes)->successResponse();
     }
 
-    //* bodyParam internal_name int required The room ID. Example: r98639bgh3
-
     /**
      * Store
      * Description
-     * @bodyData internal_name Yormy\PromocodeLaravel\DataObjects\InviteCodeData
-     * @bodyData description Yormy\PromocodeLaravel\DataObjects\InviteCodeData
-     * @bodyData code Yormy\PromocodeLaravel\DataObjects\InviteCodeData
+     * @bodyParamDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeData
      *
-     * @LaravelData Yormy\PromocodeLaravel\DataObjects\InviteCodeData
+     * @ApiResponseDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeData
      * @ApiResponse successResponseCreated
      */
     public function store(InviteCodeData $data)
