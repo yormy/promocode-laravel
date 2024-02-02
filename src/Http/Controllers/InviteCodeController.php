@@ -5,6 +5,7 @@ namespace Yormy\PromocodeLaravel\Http\Controllers;
 use Illuminate\Http\Request;
 use Yormy\Apiresponse\Facades\ApiResponse;
 use Yormy\PromocodeLaravel\DataObjects\InviteCodeData;
+use Yormy\PromocodeLaravel\DataObjects\InviteCodeDataResponse;
 use Yormy\PromocodeLaravel\Models\PromocodeInvite;
 use Yormy\PromocodeLaravel\Repositories\PromocodeInviteRepository;
 
@@ -28,7 +29,8 @@ class InviteCodeController
     public function index(Request $request)
     {
         $inviteCodes = PromocodeInvite::all();
-        $dto = InviteCodeData::collection($inviteCodes);
+
+        $dto = InviteCodeDataResponse::collection($inviteCodes);
 
         return ApiResponse::withData($dto)->successResponse();
     }
@@ -47,7 +49,7 @@ class InviteCodeController
         $promocodeInviteRepository= new PromocodeInviteRepository();
         $new = $promocodeInviteRepository->create($data);
 
-        $dto = InviteCodeData::fromModel($new)->asResource();
+        $dto = InviteCodeDataResponse::fromModel($new);
 
         return ApiResponse::withData($dto)->successResponseCreated();
     }
@@ -68,7 +70,7 @@ class InviteCodeController
         $promocodeInviteRepository= new PromocodeInviteRepository($promocodeInvite);
         $updated = $promocodeInviteRepository->update($data);
 
-        $dto = InviteCodeData::fromModel($updated)->asResource();
+        $dto = InviteCodeDataResponse::fromModel($updated);
 
         return ApiResponse::withData($dto)->successResponseUpdated();
     }

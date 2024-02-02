@@ -44,7 +44,7 @@ class InviteCodeIndexTest extends TestCase
     public function InviteCodeAllUsed_Index_NoUsesLeft(): void
     {
         PromocodeInvite::truncate();
-        $dd = PromocodeInvite::factory()->create(['uses_current' => 1]);
+        PromocodeInvite::factory()->create(['uses_current' => 1]);
 
         $response = $this->json('GET', route(static::ROUTE_INDEX));
         $response->assertSuccessful();
@@ -66,7 +66,7 @@ class InviteCodeIndexTest extends TestCase
         $response = $this->json('GET', route(static::ROUTE_INDEX));
         $response->assertSuccessful();
 
-        $response->assertJsonDataArrayHasElement('isActive', false);
-        $response->assertJsonDataArrayHasElement('isAvailable', false);
+        $response->assertJsonDataArrayHasElement('is_active', false);
+        $response->assertJsonDataArrayHasElement('is_available', false);
     }
 }
