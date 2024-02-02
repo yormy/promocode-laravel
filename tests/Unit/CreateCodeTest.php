@@ -18,10 +18,9 @@ class CreateCodeTest extends TestCase
      */
     public function CreateRandomCode_Invite(): void
     {
-        $data = PromocodeDto::make()->toArray();
-        $promocodeInvite = PromocodeInvite::create($data);
+        $promocodeInvite = PromocodeInvite::factory()->create();
 
-        $this->assertTrue(strlen($promocodeInvite->code) === 7);
+        $this->assertTrue(strlen($promocodeInvite->code) === 9);
 
         $promocode = PromocodeValidateInvite::check($promocodeInvite->code);
         $this->assertNotNull($promocode);
