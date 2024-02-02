@@ -52,9 +52,25 @@ class InviteCodeController
         return ApiResponse::withData($dto)->successResponseCreated();
     }
 
+    /**
+     * Update
+     *
+     * @bodyParamDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeData
+     *
+     * @responseFieldsDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeData
+     * @responseApiDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeData
+     * @responseApiType successResponseUpdated
+     */
     public function update(InviteCodeData $data, PromocodeInvite $code_xid)
     {
         $promocodeInvite = $code_xid;
+
+        $promocodeInviteRepository= new PromocodeInviteRepository($promocodeInvite);
+        $updated = $promocodeInviteRepository->update($data);
+
+        $dto = InviteCodeData::fromModel($updated)->asResource();
+
+        return ApiResponse::withData($dto)->successResponseUpdated();
     }
 //
 //    public function destroy(InviteCodeData $data)

@@ -77,9 +77,9 @@ abstract class BaseCodeStore extends TestCase
 
         $data = $this->getPostData();
         $data['internal_name'] = $internalName;
-        $response = $this->json('POST', route(static::ROUTE_STORE, $promocodeInvite->xid), $data);
+        $response = $this->json('PUT', route(static::ROUTE_UPDATE, $promocodeInvite->xid), $data);
 
-        $response->assertCreated();
+        $response->assertSuccessful();
         $response->assertJsonDataItemNotHasElement('xid', $data['xid']);
         $response->assertJsonDataItemHasElement('code', $data['code']);
         $response->assertJsonDataItemHasElement('uses_current', 0);

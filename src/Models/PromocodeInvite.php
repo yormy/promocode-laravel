@@ -84,4 +84,9 @@ class PromocodeInvite extends BaseModel
     {
         return $this->is_active && $this->uses_left > 0 ;
     }
+
+    public function getRouteKeyName()
+    {
+        return 'xid';
+    }
 }

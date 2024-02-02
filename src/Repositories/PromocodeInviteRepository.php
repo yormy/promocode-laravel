@@ -21,4 +21,10 @@ class PromocodeInviteRepository
         return $this->model->create($data->toArray());
     }
 
+    public function update(InviteCodeData $data): PromocodeInvite
+    {
+        $this->model->update($data->toArray());
+
+        return $this->model->refresh();
+    }
 }
