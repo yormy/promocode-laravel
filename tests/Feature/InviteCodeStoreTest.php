@@ -7,8 +7,6 @@ use Yormy\AssertLaravel\Traits\RouteHelperTrait;
 use Yormy\PromocodeLaravel\Models\PromocodeInvite;
 use Yormy\PromocodeLaravel\Tests\TestCase;
 
-// Add new code cannot be duplicate, not in deleted either
-// deletion is soft deleted
 // date activated cannot be in the past
 // date expired cannot be before activated
 // update max uses cannot be lower than current uses
@@ -23,5 +21,6 @@ use Yormy\PromocodeLaravel\Tests\TestCase;
 class InviteCodeStoreTest extends BaseCodeStore
 {
     const ROUTE_STORE = 'api.v1.admin.promocodes.invites.store';
-
+    const ROUTE_UPDATE = 'api.v1.admin.promocodes.invites.update';
+    const ROUTE_DESTROY = 'api.v1.admin.promocodes.invites.destroy';
 }

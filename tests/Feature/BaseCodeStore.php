@@ -26,15 +26,36 @@ abstract class BaseCodeStore extends TestCase
 {
     use RouteHelperTrait;
 
-    const ROUTE_STORE = 'api.v1.admin.promocodes.invites.store';
-    const ROUTE_UPDATE = 'api.v1.admin.promocodes.invites.update';
-    const ROUTE_DESTROY = 'api.v1.admin.promocodes.invites.destroy';
+    /**
+     * @test
+     *
+     * @group promocode-invite
+     *
+     */
+    public function InviteCode_Store_RequiredFieldsPresent()
+    {
+        $requiredFields = [
+            'internal_name',
+            'expires_at',
+            'active_from',
+            'uses_max'
+        ];
+        $this->withExceptionHandling();
+        $data = $this->getPostData();
+
+        foreach ($requiredFields as $field) {
+            $removed = $data;
+            unset($removed[$field]);
+
+            $response = $this->json('POST', route(static::ROUTE_STORE), $removed);
+            $response->assertJsonValidationErrorFor($field);
+        }
+    }
 
     /**
      * @test
      *
      * @group promocode-invite
-     * @group xxx
      *
      */
     public function InviteCode_Create_Success()
@@ -67,7 +88,6 @@ abstract class BaseCodeStore extends TestCase
      * @test
      *
      * @group promocode-invite
-     * @group xxx
      *
      */
     public function InviteCode_Update_Success()
@@ -103,7 +123,6 @@ abstract class BaseCodeStore extends TestCase
      * @test
      *
      * @group promocode-invite
-     * @group xxx
      *
      */
     public function InviteCode_Delete_Success()
@@ -115,6 +134,46 @@ abstract class BaseCodeStore extends TestCase
 
         $models = PromocodeInvite::where('xid', $promocodeInvite->xid)->get();
         $this->assertTrue($models->isEmpty());
+    }
+
+    /**
+     * @test
+     *
+     * @group promocode-invite
+     * @group xxx
+     *
+     */
+    public function InviteCode_CreateDuplicate_Failed()
+    {
+        $code = CodeGenerator::generate(CodeGenerator::TYPE_NUMERIC_ALPHA_UPPERCASE, 9);
+        $data = $this->getPostData();
+        $data['code'] = $code;
+
+        $this->withExceptionHandling();
+        $this->json('POST', route(static::ROUTE_STORE), $data);
+        $response = $this->json('POST', route(static::ROUTE_STORE), $data);
+        $response->assertJsonValidationErrorFor('code');
+    }
+
+    /**
+     * @test
+     *
+     * @group promocode-invite
+     * @group xxx
+     *
+     */
+    public function InviteCode_CreateDuplicateTrashed_Failed()
+    {
+        $code = CodeGenerator::generate(CodeGenerator::TYPE_NUMERIC_ALPHA_UPPERCASE, 9);
+        $data = $this->getPostData();
+        $data['code'] = $code;
+
+        $this->withExceptionHandling();
+        $this->json('POST', route(static::ROUTE_STORE), $data);
+        PromocodeInvite::where('code', $code)->get()->first()->delete();
+
+        $response = $this->json('POST', route(static::ROUTE_STORE), $data);
+        $response->assertJsonValidationErrorFor('code');
     }
 
     // ---------- HELPERS ----------
