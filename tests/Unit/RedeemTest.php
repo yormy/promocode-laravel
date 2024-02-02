@@ -2,7 +2,6 @@
 
 namespace Yormy\PromocodeLaravel\Tests\Unit;
 
-use Yormy\PromocodeLaravel\DataObjects\PromocodeStripeDto;
 use Yormy\PromocodeLaravel\Exceptions\InvalidCodeException;
 use Yormy\PromocodeLaravel\Models\BillingPromocodeStripe;
 use Yormy\PromocodeLaravel\Services\PromocodeValidateStripe;
@@ -20,12 +19,9 @@ class RedeemTest extends TestCase
      */
     public function Code_Redeem(): void
     {
-        $data = PromocodeStripeDto::make()
-            ->stripeCouponId('stripe-coupon-id')
-            ->toArray();
-        $promocode = BillingPromocodeStripe::create($data);
+        $promocodeStripe = BillingPromocodeStripe::factory()->create();
 
-        PromocodeValidateStripe::check($promocode->code)->redeem();
+        PromocodeValidateStripe::check($promocodeStripe->code)->redeem();
 
         $this->assertTrue(true);
     }
@@ -37,10 +33,7 @@ class RedeemTest extends TestCase
      */
     public function Code_RedeemWrong_Exception(): void
     {
-        $data = PromocodeStripeDto::make()
-            ->stripeCouponId('stripe-coupon-id')
-            ->toArray();
-        BillingPromocodeStripe::create($data);
+        BillingPromocodeStripe::factory()->create();
 
         $this->expectException(InvalidCodeException::class);
         PromocodeValidateStripe::check('xxx')->redeem();
@@ -53,14 +46,11 @@ class RedeemTest extends TestCase
      */
     public function Code_RedeemTwice_Exception(): void
     {
-        $data = PromocodeStripeDto::make()
-            ->stripeCouponId('stripe-coupon-id')
-            ->toArray();
-        $promocode = BillingPromocodeStripe::create($data);
+        $promocodeStripe = BillingPromocodeStripe::factory()->create();
 
-        PromocodeValidateStripe::check($promocode->code)->redeem();
+        PromocodeValidateStripe::check($promocodeStripe->code)->redeem();
 
         $this->expectException(InvalidCodeException::class);
-        PromocodeValidateStripe::check($promocode->code)->redeem();
+        PromocodeValidateStripe::check($promocodeStripe->code)->redeem();
     }
 }

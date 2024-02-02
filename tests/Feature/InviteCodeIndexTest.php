@@ -39,7 +39,6 @@ class InviteCodeIndexTest extends TestCase
      * @test
      *
      * @group promocode-invite
-     * @group xxx
      */
     public function InviteCodeAllUsed_Index_NoUsesLeft(): void
     {
