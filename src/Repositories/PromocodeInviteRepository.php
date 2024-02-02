@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Yormy\PromocodeLaravel\Repositories;
 
-use Yormy\PromocodeLaravel\DataObjects\InviteCodeData;
+use Yormy\PromocodeLaravel\DataObjects\InviteCodeDataRequest;
 use Yormy\PromocodeLaravel\Models\PromocodeInvite;
 
 class PromocodeInviteRepository
@@ -16,12 +16,12 @@ class PromocodeInviteRepository
         }
     }
 
-    public function create(InviteCodeData $data): PromocodeInvite
+    public function create(InviteCodeDataRequest $data): PromocodeInvite
     {
         return $this->model->create($data->toArray());
     }
 
-    public function update(InviteCodeData $data): PromocodeInvite
+    public function update(InviteCodeDataRequest $data): PromocodeInvite
     {
         $this->model->update($data->toArray());
 
