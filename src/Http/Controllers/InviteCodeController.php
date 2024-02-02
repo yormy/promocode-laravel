@@ -3,10 +3,8 @@
 namespace Yormy\PromocodeLaravel\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Mexion\BedrockUsersv2\Domain\User\DataObjects\Responses\Registration;
 use Yormy\Apiresponse\Facades\ApiResponse;
 use Yormy\PromocodeLaravel\DataObjects\InviteCodeData;
-use Yormy\PromocodeLaravel\Http\Controllers\Resources\InviteCodeCollection;
 use Yormy\PromocodeLaravel\Models\PromocodeInvite;
 use Yormy\PromocodeLaravel\Repositories\PromocodeInviteRepository;
 
@@ -23,9 +21,8 @@ class InviteCodeController
     /**
      * Index
      *
-     * @responseFieldDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeData
-     *
-     * @responseApiDTOCollection Yormy\PromocodeLaravel\DataObjects\InviteCodeData
+     * @responseFieldsDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeData
+     * @responseApiDTOCollection Yormy\PromocodeLaravel\DataObjects\InviteCodeData paginate=5
      * @responseApiType successResponseCreated
      */
     public function index(Request $request)
