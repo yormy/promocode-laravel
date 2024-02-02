@@ -7,6 +7,7 @@ use Carbon\CarbonImmutable;
 class InviteCodeDataResponse extends InviteCodeDataBase
 {
     public function __construct(
+        public string $xid,
         public string $internal_name,
         public string $description,
         public ?string $code,
@@ -19,7 +20,6 @@ class InviteCodeDataResponse extends InviteCodeDataBase
         public ?string $for_ip,
         public ?string $for_email,
 
-        public ?string $xid,
         public int $uses_current,
         public int $uses_left,
         public bool $is_active,
