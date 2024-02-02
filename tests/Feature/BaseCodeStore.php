@@ -8,20 +8,6 @@ use Yormy\PromocodeLaravel\Models\PromocodeInvite;
 use Yormy\PromocodeLaravel\Services\CodeGenerator;
 use Yormy\PromocodeLaravel\Tests\TestCase;
 
-// Add new code cannot be duplicate, not in deleted either
-// deletion is soft deleted
-// missing fields
-// date activated cannot be in the past
-// date expired cannot be before activated
-// update max uses cannot be lower than current uses
-// update code
-// update dataset
-// test registration:
-// -- new code added
-// -- deleted code
-// -- expired
-// -- no uses left
-// --
 abstract class BaseCodeStore extends TestCase
 {
     use RouteHelperTrait;
@@ -140,7 +126,6 @@ abstract class BaseCodeStore extends TestCase
      * @test
      *
      * @group promocode-invite
-     * @group xxx
      *
      */
     public function InviteCode_CreateDuplicate_Failed()
@@ -159,7 +144,6 @@ abstract class BaseCodeStore extends TestCase
      * @test
      *
      * @group promocode-invite
-     * @group xxx
      *
      */
     public function InviteCode_CreateDuplicateTrashed_Failed()
@@ -174,6 +158,23 @@ abstract class BaseCodeStore extends TestCase
 
         $response = $this->json('POST', route(static::ROUTE_STORE), $data);
         $response->assertJsonValidationErrorFor('code');
+    }
+
+    /**
+     * @test
+     *
+     * @group promocode-invite
+     *
+     */
+    public function InviteCode_ExpiresAfterActiveFrom()
+    {
+        $data = $this->getPostData();
+        $data['active_from'] = Carbon::now();
+        $data['expires_at'] = Carbon::now()->subDay();
+
+        $this->withExceptionHandling();
+        $response = $this->json('POST', route(static::ROUTE_STORE), $data);
+        $response->assertJsonValidationErrorFor('expires_at');
     }
 
     // ---------- HELPERS ----------

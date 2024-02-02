@@ -69,7 +69,7 @@ class InviteCodeData extends Data
 
         $rules['uses_max'] = ['required', 'integer', 'min:0','max:10000'];
         $rules['active_from'] = ['required', 'date'];
-        $rules['expires_at'] = ['required', 'date'];
+        $rules['expires_at'] = ['required', 'date', 'after:active_from'];
 
         $rules['for_user_id'] = ['sometimes', 'nullable'];
         $rules['for_ip'] = ['sometimes', 'nullable', 'string', 'max:100'];
