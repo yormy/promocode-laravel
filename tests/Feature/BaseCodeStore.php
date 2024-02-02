@@ -28,6 +28,7 @@ abstract class BaseCodeStore extends TestCase
 
     const ROUTE_STORE = 'api.v1.admin.promocodes.invites.store';
     const ROUTE_UPDATE = 'api.v1.admin.promocodes.invites.update';
+    const ROUTE_DESTROY = 'api.v1.admin.promocodes.invites.destroy';
 
     /**
      * @test
@@ -95,6 +96,25 @@ abstract class BaseCodeStore extends TestCase
         $response->assertJsonDataItemHasElement('expires_at', $data['expires_at']);
 
         return $response;
+    }
+
+
+    /**
+     * @test
+     *
+     * @group promocode-invite
+     * @group xxx
+     *
+     */
+    public function InviteCode_Delete_Success()
+    {
+        $promocodeInvite = PromocodeInvite::factory()->create();
+
+        $response = $this->json('DELETE', route(static::ROUTE_DESTROY, $promocodeInvite->xid));
+        $response->assertSuccessful();
+
+        $models = PromocodeInvite::where('xid', $promocodeInvite->xid)->get();
+        $this->assertTrue($models->isEmpty());
     }
 
     // ---------- HELPERS ----------

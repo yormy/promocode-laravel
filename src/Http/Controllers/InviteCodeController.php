@@ -72,10 +72,18 @@ class InviteCodeController
 
         return ApiResponse::withData($dto)->successResponseUpdated();
     }
-//
-//    public function destroy(InviteCodeData $data)
-//    {
-//
-//    }
+
+    /**
+     * Destroy
+     *
+     * @responseApiDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeData
+     * @responseApiType successResponseDeleted
+     */
+    public function destroy(PromocodeInvite $code_xid)
+    {
+        $code_xid->delete();
+
+        return ApiResponse::withData($code_xid)->successResponseDeleted();
+    }
 
 }
