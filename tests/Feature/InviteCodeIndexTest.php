@@ -35,6 +35,7 @@ class InviteCodeIndexTest extends TestCase
      */
     public function InviteCode_Index_HasAll(): void
     {
+        PromocodeInvite::factory(5)->create();
         PromocodeInvite::factory()->create(['code' => 'ABCDEF']);
         PromocodeInvite::factory()->create(['code' => '123456']);
 

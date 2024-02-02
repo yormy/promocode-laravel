@@ -134,7 +134,7 @@ class InviteCodeData extends Data
 
     public function asResource()
     {
-        return $this->withExtended()->toArray();
+        return $this->withExtended();
     }
 
 }

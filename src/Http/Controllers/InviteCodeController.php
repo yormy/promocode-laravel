@@ -49,7 +49,17 @@ class InviteCodeController
 
         $dto = InviteCodeData::fromModel($new)->asResource();
 
-        return ApiResponse::withData($dto)->successResponse();
+        return ApiResponse::withData($dto)->successResponseCreated();
     }
+
+    public function update(InviteCodeData $data, PromocodeInvite $code_xid)
+    {
+        $promocodeInvite = $code_xid;
+    }
+//
+//    public function destroy(InviteCodeData $data)
+//    {
+//
+//    }
 
 }

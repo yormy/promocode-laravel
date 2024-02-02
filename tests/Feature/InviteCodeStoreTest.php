@@ -20,7 +20,7 @@ use Yormy\PromocodeLaravel\Tests\TestCase;
 // -- expired
 // -- no uses left
 // --
-class InviteCodeStoreTest extends BaseCodeStoreTest
+class InviteCodeStoreTest extends BaseCodeStore
 {
     const ROUTE_STORE = 'api.v1.admin.promocodes.invites.store';
 
