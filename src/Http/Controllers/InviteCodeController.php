@@ -16,21 +16,17 @@ use Yormy\PromocodeLaravel\Repositories\PromocodeInviteRepository;
  * @subgroup Invite
  * @subgroupDescription
  * Manage invite codes
- *
- * todo:
- * collection
- * paginated collection
  */
 class InviteCodeController
 {
 
     /**
      * Index
-     * description
      *
-     * @response 200
-     * @ApiResponseDTOCollection Yormy\PromocodeLaravel\DataObjects\InviteCodeData
      * @responseFieldDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeData
+     *
+     * @responseApiDTOCollection Yormy\PromocodeLaravel\DataObjects\InviteCodeData
+     * @responseApiType successResponseCreated
      */
     public function index(Request $request)
     {
@@ -42,12 +38,12 @@ class InviteCodeController
 
     /**
      * Store
-     * Description
+     *
      * @bodyParamDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeData
      *
-     * @responseFieldDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeData
-     * @ApiResponseDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeData
-     * @ApiResponse successResponseCreated
+     * @responseFieldsDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeData
+     * @responseApiDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeData
+     * @responseApiType successResponseCreated
      */
     public function store(InviteCodeData $data)
     {
