@@ -5,28 +5,14 @@ namespace Yormy\PromocodeLaravel\Tests\Feature;
 use Illuminate\Support\Carbon;
 use Yormy\AssertLaravel\Traits\RouteHelperTrait;
 use Yormy\PromocodeLaravel\Models\PromocodeInvite;
+use Yormy\PromocodeLaravel\Services\CodeGenerator;
 use Yormy\PromocodeLaravel\Tests\TestCase;
 
-// Add new code cannot be duplicate, not in deleted either
-// deletion is soft deleted
-// date activated cannot be in the past
-// date expired cannot be before activated
-// update max uses cannot be lower than current uses
-// auto create code
-// update code
-// update dataset
-// test registration:
-// -- new code added
-// -- deleted code
-// -- expired
-// -- no uses left
-// --
 class InviteCodeIndexTest extends TestCase
 {
     use RouteHelperTrait;
 
     const ROUTE_INDEX = 'api.v1.admin.promocodes.invites.index';
-
 
     /**
      * @test
@@ -35,32 +21,37 @@ class InviteCodeIndexTest extends TestCase
      */
     public function InviteCode_Index_HasAll(): void
     {
+        $code1 = CodeGenerator::generate(CodeGenerator::TYPE_NUMERIC_ALPHA_UPPERCASE, 9);
+        $code2 = CodeGenerator::generate(CodeGenerator::TYPE_NUMERIC_ALPHA_UPPERCASE, 9);
+
         PromocodeInvite::factory(5)->create();
-        PromocodeInvite::factory()->create(['code' => 'ABCDEF']);
-        PromocodeInvite::factory()->create(['code' => '123456']);
+        PromocodeInvite::factory()->create(['code' => $code1]);
+        PromocodeInvite::factory()->create(['code' => $code2]);
 
         $response = $this->json('GET', route(static::ROUTE_INDEX));
 
         $response->assertSuccessful();
-        $response->assertJsonDataArrayHasElement('code', 'ABCDEF');
-        $response->assertJsonDataArrayHasElement('code', '123456');
+        $response->assertJsonDataArrayHasElement('code', $code1);
+        $response->assertJsonDataArrayHasElement('code', $code2);
     }
 
     /**
      * @test
      *
      * @group promocode-invite
+     * @group xxx
      */
     public function InviteCodeAllUsed_Index_NoUsesLeft(): void
     {
-        PromocodeInvite::factory()->create(['code' => 'ABCDEF', 'uses_current' => 1]);
+        PromocodeInvite::truncate();
+        $dd = PromocodeInvite::factory()->create(['uses_current' => 1]);
 
         $response = $this->json('GET', route(static::ROUTE_INDEX));
         $response->assertSuccessful();
 
-        $response->assertJsonDataArrayHasElement('usesLeft', 0);
-        $response->assertJsonDataArrayHasElement('isActive', true);
-        $response->assertJsonDataArrayHasElement('isAvailable', false);
+        $response->assertJsonDataArrayHasElement('uses_left', 0);
+        $response->assertJsonDataArrayHasElement('is_active', true);
+        $response->assertJsonDataArrayHasElement('is_available', false);
     }
 
     /**
@@ -70,7 +61,7 @@ class InviteCodeIndexTest extends TestCase
      */
     public function InviteCodeNotActivated_Index_NotActivated(): void
     {
-        PromocodeInvite::factory()->create(['code' => 'ABCDEF', 'active_from' => Carbon::now()->addDays(1)]);
+        PromocodeInvite::factory()->create(['active_from' => Carbon::now()->addDays(1)]);
 
         $response = $this->json('GET', route(static::ROUTE_INDEX));
         $response->assertSuccessful();
