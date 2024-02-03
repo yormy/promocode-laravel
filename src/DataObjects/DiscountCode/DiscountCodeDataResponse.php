@@ -38,27 +38,10 @@ class DiscountCodeDataResponse extends PromocodeDataResponse
 
     public static function fromModel($model): self
     {
+        $constuctorData = parent::constructorData($model);
+
         return new static(
-            xid: $model->xid,
-
-            internal_name: $model->internal_name,
-            description: $model->description,
-            code: $model->code,
-
-            uses_max: (int)$model->uses_max,
-            active_from: CarbonImmutable::parse($model->active_from),
-            expires_at: CarbonImmutable::parse($model->expires_at),
-
-            for_user_id: (int)$model->for_user_id,
-            for_ip: $model->for_ip,
-            for_email: $model->for_email,
-
-            uses_current: (int)$model->uses_current,
-            uses_left: (int)$model->uses_left,
-            is_active: (bool)$model->is_active,
-            is_available: (bool)$model->is_available,
-
-            deleted_at: CarbonImmutable::parse($model->deleted_at),
+            ...$constuctorData,
 
             description_discount_amount_cents: $model->description_discount_amount_cents,
             description_discount_percentage: $model->description_discount_percentage,

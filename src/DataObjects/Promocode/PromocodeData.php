@@ -3,10 +3,11 @@
 namespace Yormy\PromocodeLaravel\DataObjects\Promocode;
 
 use Spatie\LaravelData\Data;
+use Spatie\LaravelData\Support\Validation\ValidationContext;
 
 abstract class PromocodeData extends Data
 {
-    public static function rules(): array
+    public static function rules(ValidationContext $context): array
     {
         $rules['internal_name'] = ['required', 'string', 'max:100'];
         $rules['description'] = ['required', 'string', 'max:100'];

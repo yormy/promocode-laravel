@@ -8,6 +8,7 @@ use Yormy\PromocodeLaravel\Services\CodeGenerator;
 abstract class PromocodeDataRequest extends PromocodeData
 {
     public function __construct(
+        public ?string $xid,
         public string $internal_name,
         public string $description,
         public ?string $code,

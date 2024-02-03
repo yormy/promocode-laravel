@@ -18,12 +18,18 @@ class PromocodeInviteRepository
 
     public function create(InviteCodeDataRequest $data): PromocodeInvite
     {
-        return $this->model->create($data->toArray());
+        $storing = $data->toArray();
+        unset($storing['xid']);
+
+        return $this->model->create($storing);
     }
 
     public function update(InviteCodeDataRequest $data): PromocodeInvite
     {
-        $this->model->update($data->toArray());
+        $storing = $data->toArray();
+        unset($storing['xid']);
+
+        $this->model->update($storing);
 
         return $this->model->refresh();
     }

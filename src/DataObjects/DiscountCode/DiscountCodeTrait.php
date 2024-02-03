@@ -2,12 +2,30 @@
 
 namespace Yormy\PromocodeLaravel\DataObjects\DiscountCode;
 
+use Illuminate\Support\Collection;
+use Illuminate\Validation\Rule;
+use Spatie\LaravelData\Support\Validation\ValidationContext;
+
 trait DiscountCodeTrait
 {
-    public static function rules(): array
+    public static function prepareForPipeline(Collection $properties) : Collection
     {
-        $rules = parent::rules();
-        $rules['code'] = ['unique:billing_promocodes_stripe,code', 'string', 'max:10'];
+        if (null == $properties['description_discount_percentage']) {
+            unset ($properties['description_discount_percentage']);
+        }
+
+        if (null == $properties['description_discount_amount_cents']) {
+            unset ($properties['description_discount_amount_cents']);
+        }
+
+        return $properties;
+    }
+
+    public static function rules(ValidationContext $context): array
+    {
+        $rules = parent::rules($context);
+
+        $rules['code'] = ['required', 'string', 'max:10', Rule::unique('billing_promocodes_stripe')->ignore($context->payload['xid'], 'xid')];
 
         $rules['description_discount_amount_cents'] = [
             'required_without:description_discount_percentage',

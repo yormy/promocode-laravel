@@ -2,13 +2,16 @@
 
 namespace Yormy\PromocodeLaravel\DataObjects\InviteCode;
 
+use Illuminate\Validation\Rule;
+use Spatie\LaravelData\Support\Validation\ValidationContext;
+
 trait InviteCodeTrait
 {
-    public static function rules(): array
+    public static function rules(ValidationContext $context): array
     {
-        $rules = parent::rules();
+        $rules = parent::rules($context);
 
-        $rules['code'] = ['unique:promocodes_invites,code', 'string', 'max:9'];
+        $rules['code'] = ['required', 'string', 'max:10', Rule::unique('promocodes_invites')->ignore($context->payload['xid'], 'xid')];
 
         return $rules;
     }

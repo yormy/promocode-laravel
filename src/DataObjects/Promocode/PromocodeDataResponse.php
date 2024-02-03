@@ -29,29 +29,37 @@ abstract class PromocodeDataResponse extends PromocodeData
     ) {
     }
 
+    protected static function constructorData($model): array
+    {
+        return [
+            $model->xid,
+
+            $model->internal_name,
+            $model->description,
+            $model->code,
+
+            (int)$model->uses_max,
+            CarbonImmutable::parse($model->active_from),
+            CarbonImmutable::parse($model->expires_at),
+
+            $model->for_user_id,
+            $model->for_ip,
+            $model->for_email,
+
+            (int)$model->uses_current,
+            (int)$model->uses_left,
+            (bool)$model->is_active,
+            (bool)$model->is_available,
+
+            CarbonImmutable::parse($model->deleted_at),
+        ];
+    }
+
+
     public static function fromModel($model): self
     {
-        return new static(
-            xid: $model->xid,
+        $constuctorData = self::constructorData($model);
 
-            internal_name: $model->internal_name,
-            description: $model->description,
-            code: $model->code,
-
-            uses_max: (int)$model->uses_max,
-            active_from: CarbonImmutable::parse($model->active_from),
-            expires_at: CarbonImmutable::parse($model->expires_at),
-
-            for_user_id: (int)$model->for_user_id,
-            for_ip: $model->for_ip,
-            for_email: $model->for_email,
-
-            uses_current: (int)$model->uses_current,
-            uses_left: (int)$model->uses_left,
-            is_active: (bool)$model->is_active,
-            is_available: (bool)$model->is_available,
-
-            deleted_at: CarbonImmutable::parse($model->deleted_at),
-        );
+        return new static(...$constuctorData);
     }
 }

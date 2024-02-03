@@ -18,12 +18,18 @@ class PromocodeDiscountRepository
 
     public function create(DiscountCodeDataRequest $data): DiscountCodeStripe
     {
-        return $this->model->create($data->toArray());
+        $storing = $data->toArray();
+        unset($storing['xid']);
+
+        return $this->model->create($storing);
     }
 
     public function update(DiscountCodeDataRequest $data): DiscountCodeStripe
     {
-        $this->model->update($data->toArray());
+        $storing = $data->toArray();
+        unset($storing['xid']);
+
+        $this->model->update($storing);
 
         return $this->model->refresh();
     }
