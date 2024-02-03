@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Yormy\PromocodeLaravel\Repositories;
 
-use Yormy\PromocodeLaravel\DataObjects\InviteCodeDataRequest;
+use Yormy\PromocodeLaravel\DataObjects\InviteCode\InviteCodeDataRequest;
 use Yormy\PromocodeLaravel\Models\PromocodeInvite;
 
 class PromocodeInviteRepository

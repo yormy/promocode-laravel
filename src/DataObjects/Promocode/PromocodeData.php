@@ -1,12 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Yormy\PromocodeLaravel\DataObjects;
+namespace Yormy\PromocodeLaravel\DataObjects\Promocode;
 
-use Carbon\CarbonImmutable;
 use Spatie\LaravelData\Data;
-use Spatie\LaravelData\Lazy;
 
-class InviteCodeDataBase extends Data
+abstract class PromocodeData extends Data
 {
     public static function rules(): array
     {

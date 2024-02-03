@@ -1,12 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Yormy\PromocodeLaravel\DataObjects;
+namespace Yormy\PromocodeLaravel\DataObjects\Promocode;
 
 use Carbon\CarbonImmutable;
-use Spatie\LaravelData\Lazy;
 use Yormy\PromocodeLaravel\Services\CodeGenerator;
 
-class InviteCodeDataRequest extends InviteCodeDataBase
+abstract class PromocodeDataRequest extends PromocodeData
 {
     public function __construct(
         public string $internal_name,

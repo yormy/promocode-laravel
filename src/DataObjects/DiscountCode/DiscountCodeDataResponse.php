@@ -1,10 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Yormy\PromocodeLaravel\DataObjects;
+namespace Yormy\PromocodeLaravel\DataObjects\DiscountCode;
 
 use Carbon\CarbonImmutable;
+use Yormy\PromocodeLaravel\DataObjects\Promocode\PromocodeDataResponse;
 
-class InviteCodeDataResponse extends InviteCodeDataBase
+class DiscountCodeDataResponse extends PromocodeDataResponse
 {
     public function __construct(
         public string $xid,
@@ -26,12 +27,18 @@ class InviteCodeDataResponse extends InviteCodeDataBase
         public bool $is_available,
 
         public CarbonImmutable | null $deleted_at,
+
+        public ?int $description_discount_amount,
+        public ?int $description_discount_percentage,
+        public string $stripe_discount_coupon,
     ) {
     }
 
     public static function fromModel($model): self
     {
-        return new self(
+        return new static(
+            xid: $model->xid,
+
             internal_name: $model->internal_name,
             description: $model->description,
             code: $model->code,
@@ -44,13 +51,16 @@ class InviteCodeDataResponse extends InviteCodeDataBase
             for_ip: $model->for_ip,
             for_email: $model->for_email,
 
-            xid: $model->xid,
             uses_current: (int)$model->uses_current,
             uses_left: (int)$model->uses_left,
             is_active: (bool)$model->is_active,
             is_available: (bool)$model->is_available,
 
             deleted_at: CarbonImmutable::parse($model->deleted_at),
+
+            description_discount_amount: $model->description_discount_amount,
+            description_discount_percentage: $model->description_discount_percentage,
+            stripe_discount_coupon: $model->stripe_discount_coupon,
         );
     }
 }

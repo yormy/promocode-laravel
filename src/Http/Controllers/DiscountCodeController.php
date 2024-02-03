@@ -16,7 +16,7 @@ use Yormy\PromocodeLaravel\Repositories\PromocodeInviteRepository;
  * @subgroupDescription
  * Manage invite codes
  */
-class InviteCodeController
+class DiscountCodeController
 {
 
     /**
