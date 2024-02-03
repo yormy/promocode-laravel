@@ -2,12 +2,12 @@
 
 namespace Yormy\PromocodeLaravel\Services;
 
-use Yormy\PromocodeLaravel\Models\BillingPromocodeStripe;
+use Yormy\PromocodeLaravel\Models\DiscountCodeStripe;
 
 class PromocodeValidateStripe extends PromocodeValidate
 {
     public static function getModel()
     {
-        return new BillingPromocodeStripe();
+        return new DiscountCodeStripe();
     }
 }

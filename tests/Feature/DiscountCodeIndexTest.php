@@ -4,7 +4,7 @@ namespace Yormy\PromocodeLaravel\Tests\Feature;
 
 use Illuminate\Support\Carbon;
 use Yormy\AssertLaravel\Traits\RouteHelperTrait;
-use Yormy\PromocodeLaravel\Models\BillingPromocodeStripe;
+use Yormy\PromocodeLaravel\Models\DiscountCodeStripe;
 use Yormy\PromocodeLaravel\Services\CodeGenerator;
 use Yormy\PromocodeLaravel\Tests\TestCase;
 
@@ -24,9 +24,9 @@ class DiscountCodeIndexTest extends TestCase
         $code1 = CodeGenerator::generate(CodeGenerator::TYPE_NUMERIC_ALPHA_UPPERCASE, 9);
         $code2 = CodeGenerator::generate(CodeGenerator::TYPE_NUMERIC_ALPHA_UPPERCASE, 9);
 
-        BillingPromocodeStripe::factory(5)->create();
-        BillingPromocodeStripe::factory()->create(['code' => $code1]);
-        BillingPromocodeStripe::factory()->create(['code' => $code2]);
+        DiscountCodeStripe::factory(5)->create();
+        DiscountCodeStripe::factory()->create(['code' => $code1]);
+        DiscountCodeStripe::factory()->create(['code' => $code2]);
 
         $response = $this->json('GET', route(static::ROUTE_INDEX));
 
@@ -42,8 +42,8 @@ class DiscountCodeIndexTest extends TestCase
      */
     public function DiscountCodeAllUsed_Index_NoUsesLeft(): void
     {
-        BillingPromocodeStripe::truncate();
-        BillingPromocodeStripe::factory()->create(['uses_current' => 1]);
+        DiscountCodeStripe::truncate();
+        DiscountCodeStripe::factory()->create(['uses_current' => 1]);
 
         $response = $this->json('GET', route(static::ROUTE_INDEX));
         $response->assertSuccessful();
@@ -60,7 +60,7 @@ class DiscountCodeIndexTest extends TestCase
      */
     public function DiscountCodeNotActivated_Index_NotActivated(): void
     {
-        BillingPromocodeStripe::factory()->create(['active_from' => Carbon::now()->addDays(1)]);
+        DiscountCodeStripe::factory()->create(['active_from' => Carbon::now()->addDays(1)]);
 
         $response = $this->json('GET', route(static::ROUTE_INDEX));
         $response->assertSuccessful();

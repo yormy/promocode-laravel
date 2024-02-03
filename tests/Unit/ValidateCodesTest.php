@@ -4,7 +4,7 @@ namespace Yormy\PromocodeLaravel\Tests\Unit;
 
 use Carbon\CarbonImmutable;
 use Yormy\PromocodeLaravel\Exceptions\InvalidCodeException;
-use Yormy\PromocodeLaravel\Models\BillingPromocodeStripe;
+use Yormy\PromocodeLaravel\Models\DiscountCodeStripe;
 use Yormy\PromocodeLaravel\Services\PromocodeValidateStripe;
 use Yormy\PromocodeLaravel\Tests\TestCase;
 use Yormy\PromocodeLaravel\Tests\Traits\UserTrait;
@@ -20,7 +20,7 @@ class ValidateCodesTest extends TestCase
      */
     public function Code_Found(): void
     {
-        $promocodeStripe = BillingPromocodeStripe::factory()->create();
+        $promocodeStripe = DiscountCodeStripe::factory()->create();
 
         $promocode = PromocodeValidateStripe::check($promocodeStripe->code);
         $this->assertNotNull($promocode);
@@ -33,7 +33,7 @@ class ValidateCodesTest extends TestCase
      */
     public function Code_NotFound(): void
     {
-        BillingPromocodeStripe::factory()->create();
+        DiscountCodeStripe::factory()->create();
 
         $this->expectException(InvalidCodeException::class);
         PromocodeValidateStripe::check('hhhhh');
@@ -46,7 +46,7 @@ class ValidateCodesTest extends TestCase
      */
     public function Code_NotActive_NotFound(): void
     {
-        $promocodeStripe = BillingPromocodeStripe::factory()->activeFrom(CarbonImmutable::now()->addDay())->create();
+        $promocodeStripe = DiscountCodeStripe::factory()->activeFrom(CarbonImmutable::now()->addDay())->create();
 
         $this->expectException(InvalidCodeException::class);
         PromocodeValidateStripe::check($promocodeStripe->code);
@@ -59,7 +59,7 @@ class ValidateCodesTest extends TestCase
      */
     public function Code_Expired_NotFound(): void
     {
-        $promocodeStripe = BillingPromocodeStripe::factory()->expired()->create();
+        $promocodeStripe = DiscountCodeStripe::factory()->expired()->create();
 
         $this->expectException(InvalidCodeException::class);
         PromocodeValidateStripe::check($promocodeStripe->code);
@@ -72,7 +72,7 @@ class ValidateCodesTest extends TestCase
      */
     public function Code_NoUsageLeft_NotFound(): void
     {
-        $promocodeStripe = BillingPromocodeStripe::factory()->expired()->create();
+        $promocodeStripe = DiscountCodeStripe::factory()->expired()->create();
 
         $promocodeStripe->uses_current = 1;
         $promocodeStripe->save();
@@ -91,7 +91,7 @@ class ValidateCodesTest extends TestCase
         $this->markTestSkipped('Somehow not working in sqllite');
 
         $userCode = $this->createUser();
-        $promocodeStripe = BillingPromocodeStripe::factory()->forUser($userCode)->create();
+        $promocodeStripe = DiscountCodeStripe::factory()->forUser($userCode)->create();
 
         $promocode = PromocodeValidateStripe::checkForUser($promocodeStripe->code, $userCode);
         $this->assertNotNull($promocode);
@@ -107,7 +107,7 @@ class ValidateCodesTest extends TestCase
         $this->markTestSkipped('Somehow not working in sqllite');
 
         $userCode = $this->createUser();
-        $promocodeStripe = BillingPromocodeStripe::factory()->forUser($userCode)->create();
+        $promocodeStripe = DiscountCodeStripe::factory()->forUser($userCode)->create();
 
         $userCurrent = $this->createUser();
 
@@ -124,7 +124,7 @@ class ValidateCodesTest extends TestCase
     {
         $email = 'test@example.com';
 
-        $promocodeStripe = BillingPromocodeStripe::factory()->forEmail($email)->create();
+        $promocodeStripe = DiscountCodeStripe::factory()->forEmail($email)->create();
         $promocode = PromocodeValidateStripe::checkForEmail($promocodeStripe->code, $email);
         $this->assertNotNull($promocode);
     }
@@ -136,7 +136,7 @@ class ValidateCodesTest extends TestCase
      */
     public function CodeForEmail_WrongEmail_NotFound(): void
     {
-        $promocodeStripe = BillingPromocodeStripe::factory()->forEmail('test@example.com')->create();
+        $promocodeStripe = DiscountCodeStripe::factory()->forEmail('test@example.com')->create();
 
         $this->expectException(InvalidCodeException::class);
         PromocodeValidateStripe::checkForEmail($promocodeStripe->code, 'other@example.com');
@@ -150,7 +150,7 @@ class ValidateCodesTest extends TestCase
     public function CodeForIp_CorrectIp_Found(): void
     {
         $ip = '127.0.0.1';
-        $promocodeStripe = BillingPromocodeStripe::factory()->forIp($ip)->create();
+        $promocodeStripe = DiscountCodeStripe::factory()->forIp($ip)->create();
 
         $promocode = PromocodeValidateStripe::checkForIp($promocodeStripe->code, $ip);
         $this->assertNotNull($promocode);
@@ -164,7 +164,7 @@ class ValidateCodesTest extends TestCase
     public function CodeForIp_WrongIp_NotFound(): void
     {
         $ip = '127.0.0.1';
-        $promocodeStripe = BillingPromocodeStripe::factory()->forIp($ip)->create();
+        $promocodeStripe = DiscountCodeStripe::factory()->forIp($ip)->create();
 
         $this->expectException(InvalidCodeException::class);
         PromocodeValidateStripe::checkForIp($promocodeStripe->code, '192.168.1.1');

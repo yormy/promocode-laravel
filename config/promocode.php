@@ -1,12 +1,12 @@
 <?php
 
-use Yormy\PromocodeLaravel\Models\BillingPromocodeStripe;
+use Yormy\PromocodeLaravel\Models\DiscountCodeStripe;
 use Yormy\PromocodeLaravel\Models\PromocodeInvite;
 use Yormy\PromocodeLaravel\Services\CodeGenerator;
 
 return [
     'models' => [
-        'stripe' => BillingPromocodeStripe::class,
+        'stripe' => DiscountCodeStripe::class,
         'invite' => PromocodeInvite::class,
     ],
 

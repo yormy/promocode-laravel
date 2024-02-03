@@ -3,7 +3,7 @@
 namespace Yormy\PromocodeLaravel\Tests\Unit;
 
 use Illuminate\Support\Str;
-use Yormy\PromocodeLaravel\Models\BillingPromocodeStripe;
+use Yormy\PromocodeLaravel\Models\DiscountCodeStripe;
 use Yormy\PromocodeLaravel\Tests\TestCase;
 use Yormy\PromocodeLaravel\Tests\Traits\UserTrait;
 
@@ -18,7 +18,7 @@ class CreateCodeStripeTest extends TestCase
      */
     public function CreateRandomCode(): void
     {
-        $promocodeStripe = BillingPromocodeStripe::factory()->create();
+        $promocodeStripe = DiscountCodeStripe::factory()->create();
 
         $this->assertTrue(strlen($promocodeStripe->code) === 9);
     }
@@ -31,7 +31,7 @@ class CreateCodeStripeTest extends TestCase
     public function CreateSpecifiedCode(): void
     {
         $codeValue = Str::random(10);
-        $promocodeStripe = BillingPromocodeStripe::factory()->code($codeValue)->create();
+        $promocodeStripe = DiscountCodeStripe::factory()->code($codeValue)->create();
 
         $this->assertTrue($promocodeStripe->code === $codeValue);
     }
@@ -43,7 +43,7 @@ class CreateCodeStripeTest extends TestCase
      */
     public function Create_WitDiscountPercentage(): void
     {
-        $promocodeStripe = BillingPromocodeStripe::factory()->discountPercentage(10)->create([
+        $promocodeStripe = DiscountCodeStripe::factory()->discountPercentage(10)->create([
                 'internal_name' => 'Some Internal Name',
                 'description' => 'Some description',
             ]
@@ -59,7 +59,7 @@ class CreateCodeStripeTest extends TestCase
      */
     public function Create_WitDiscountAmount(): void
     {
-        $promocodeStripe = BillingPromocodeStripe::factory()->discountAmount(10)->create([
+        $promocodeStripe = DiscountCodeStripe::factory()->discountAmount(10)->create([
                 'internal_name' => 'Some Internal Name',
                 'description' => 'Some description',
             ]

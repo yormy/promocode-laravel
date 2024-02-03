@@ -3,7 +3,7 @@
 namespace Yormy\PromocodeLaravel\Tests\Feature;
 
 use Illuminate\Database\Eloquent\Collection;
-use Yormy\PromocodeLaravel\Models\BillingPromocodeStripe;
+use Yormy\PromocodeLaravel\Models\DiscountCodeStripe;
 use Yormy\PromocodeLaravel\Services\CodeGenerator;
 
 class DiscountCodeStoreTest extends BaseCodeStore
@@ -35,13 +35,13 @@ class DiscountCodeStoreTest extends BaseCodeStore
         return $data;
     }
 
-    protected function factoryCreate(): BillingPromocodeStripe
+    protected function factoryCreate(): DiscountCodeStripe
     {
-        return BillingPromocodeStripe::factory()->create();
+        return DiscountCodeStripe::factory()->create();
     }
 
     protected function find(array $attributes): Collection
     {
-        return BillingPromocodeStripe::where($attributes)->get();
+        return DiscountCodeStripe::where($attributes)->get();
     }
 }

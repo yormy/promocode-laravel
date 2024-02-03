@@ -8,7 +8,7 @@ use Yormy\PromocodeLaravel\DataObjects\DiscountCode\DiscountCodeDataRequest;
 use Yormy\PromocodeLaravel\DataObjects\DiscountCode\DiscountCodeDataResponse;
 use Yormy\PromocodeLaravel\DataObjects\InviteCode\InviteCodeDataRequest;
 use Yormy\PromocodeLaravel\DataObjects\InviteCode\InviteCodeDataResponse;
-use Yormy\PromocodeLaravel\Models\BillingPromocodeStripe;
+use Yormy\PromocodeLaravel\Models\DiscountCodeStripe;
 use Yormy\PromocodeLaravel\Repositories\PromocodeDiscountRepository;
 
 /**
@@ -29,7 +29,7 @@ class DiscountCodeController
      */
     public function index(Request $request)
     {
-        $discountCodes = BillingPromocodeStripe::all();
+        $discountCodes = DiscountCodeStripe::all();
 
         $dto = DiscountCodeDataResponse::collection($discountCodes);
 
@@ -64,7 +64,7 @@ class DiscountCodeController
      * @responseApiDTO Yormy\PromocodeLaravel\DataObjects\Promocode\DiscountCodeDataResponse
      * @responseApiType successResponseUpdated
      */
-    public function update(DiscountCodeDataRequest $data, BillingPromocodeStripe $code_xid)
+    public function update(DiscountCodeDataRequest $data, DiscountCodeStripe $code_xid)
     {
         $promocodeInvite = $code_xid;
 
@@ -82,7 +82,7 @@ class DiscountCodeController
      * @responseApiDTO Yormy\PromocodeLaravel\DataObjects\Promocode\DiscountCodeDataResponse
      * @responseApiType successResponseDeleted
      */
-    public function destroy(BillingPromocodeStripe $code_xid)
+    public function destroy(DiscountCodeStripe $code_xid)
     {
         $code_xid->delete();
 

@@ -3,11 +3,11 @@
 namespace Yormy\PromocodeLaravel\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Yormy\PromocodeLaravel\Models\BillingPromocodeStripe;
+use Yormy\PromocodeLaravel\Models\DiscountCodeStripe;
 
-class BillingPromocodeStripeFactory extends PromocodeFactory
+class DiscountCodeStripeFactory extends PromocodeFactory
 {
-    protected $model = BillingPromocodeStripe::class;
+    protected $model = DiscountCodeStripe::class;
 
     public function definition()
     {
