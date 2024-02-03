@@ -2,7 +2,7 @@
 
 namespace Yormy\PromocodeLaravel\DataObjects\InviteCode;
 
-trait UseInviteCodeExtention
+trait InviteCodeTrait
 {
     public static function rules(): array
     {

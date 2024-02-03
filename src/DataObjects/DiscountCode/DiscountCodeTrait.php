@@ -2,7 +2,7 @@
 
 namespace Yormy\PromocodeLaravel\DataObjects\DiscountCode;
 
-trait UseDiscountCodeExtension
+trait DiscountCodeTrait
 {
     public static function rules(): array
     {
