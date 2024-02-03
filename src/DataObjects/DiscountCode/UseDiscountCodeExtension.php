@@ -9,8 +9,18 @@ trait UseDiscountCodeExtension
         $rules = parent::rules();
         $rules['code'] = ['unique:billing_promocodes_stripe,code', 'string', 'max:10'];
 
-        $rules['description_discount_amount_cents'] = ['required_without:description_discount_percentage', 'integer', 'max:100'];
-        $rules['description_discount_percentage'] = ['required_without:description_discount_amount_cents', 'integer', 'max:100'];
+        $rules['description_discount_amount_cents'] = [
+            'required_without:description_discount_percentage',
+            'missing_with:description_discount_percentage',
+            'integer',
+            'max:100'
+        ];
+        $rules['description_discount_percentage'] = [
+            'required_without:description_discount_amount_cents',
+            'missing_with:description_discount_amount_cents',
+            'integer',
+            'max:100'
+        ];
         $rules['stripe_coupon_id'] = ['required', 'string', 'max:100'];
 
         return $rules;
