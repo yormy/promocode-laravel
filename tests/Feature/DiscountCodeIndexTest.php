@@ -4,7 +4,7 @@ namespace Yormy\PromocodeLaravel\Tests\Feature;
 
 use Illuminate\Support\Carbon;
 use Yormy\AssertLaravel\Traits\RouteHelperTrait;
-use Yormy\PromocodeLaravel\Models\PromocodeInvite;
+use Yormy\PromocodeLaravel\Models\BillingPromocodeStripe;
 use Yormy\PromocodeLaravel\Services\CodeGenerator;
 use Yormy\PromocodeLaravel\Tests\TestCase;
 
@@ -18,16 +18,15 @@ class DiscountCodeIndexTest extends TestCase
      * @test
      *
      * @group promocode-discount
-     * @group xxx
      */
-    public function InviteCode_Index_HasAll(): void
+    public function DiscountCodeCode_Index_HasAll(): void
     {
         $code1 = CodeGenerator::generate(CodeGenerator::TYPE_NUMERIC_ALPHA_UPPERCASE, 9);
         $code2 = CodeGenerator::generate(CodeGenerator::TYPE_NUMERIC_ALPHA_UPPERCASE, 9);
 
-        PromocodeInvite::factory(5)->create();
-        PromocodeInvite::factory()->create(['code' => $code1]);
-        PromocodeInvite::factory()->create(['code' => $code2]);
+        BillingPromocodeStripe::factory(5)->create();
+        BillingPromocodeStripe::factory()->create(['code' => $code1]);
+        BillingPromocodeStripe::factory()->create(['code' => $code2]);
 
         $response = $this->json('GET', route(static::ROUTE_INDEX));
 
@@ -39,12 +38,12 @@ class DiscountCodeIndexTest extends TestCase
     /**
      * @test
      *
-     * @group promocode-invite
+     * @group promocode-discount
      */
-    public function InviteCodeAllUsed_Index_NoUsesLeft(): void
+    public function DiscountCodeAllUsed_Index_NoUsesLeft(): void
     {
-        PromocodeInvite::truncate();
-        PromocodeInvite::factory()->create(['uses_current' => 1]);
+        BillingPromocodeStripe::truncate();
+        BillingPromocodeStripe::factory()->create(['uses_current' => 1]);
 
         $response = $this->json('GET', route(static::ROUTE_INDEX));
         $response->assertSuccessful();
@@ -57,11 +56,11 @@ class DiscountCodeIndexTest extends TestCase
     /**
      * @test
      *
-     * @group promocode-invite
+     * @group promocode-discount
      */
-    public function InviteCodeNotActivated_Index_NotActivated(): void
+    public function DiscountCodeNotActivated_Index_NotActivated(): void
     {
-        PromocodeInvite::factory()->create(['active_from' => Carbon::now()->addDays(1)]);
+        BillingPromocodeStripe::factory()->create(['active_from' => Carbon::now()->addDays(1)]);
 
         $response = $this->json('GET', route(static::ROUTE_INDEX));
         $response->assertSuccessful();

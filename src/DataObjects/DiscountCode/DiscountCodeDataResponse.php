@@ -28,9 +28,9 @@ class DiscountCodeDataResponse extends PromocodeDataResponse
 
         public CarbonImmutable | null $deleted_at,
 
-        public ?int $description_discount_amount,
+        public ?int $description_discount_amount_cents,
         public ?int $description_discount_percentage,
-        public string $stripe_discount_coupon,
+        public string $stripe_coupon_id,
     ) {
     }
 
@@ -58,9 +58,9 @@ class DiscountCodeDataResponse extends PromocodeDataResponse
 
             deleted_at: CarbonImmutable::parse($model->deleted_at),
 
-            description_discount_amount: $model->description_discount_amount,
+            description_discount_amount_cents: $model->description_discount_amount_cents,
             description_discount_percentage: $model->description_discount_percentage,
-            stripe_discount_coupon: $model->stripe_discount_coupon,
+            stripe_coupon_id: $model->stripe_coupon_id,
         );
     }
 }

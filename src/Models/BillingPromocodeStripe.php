@@ -23,32 +23,20 @@ use Yormy\Xid\Models\Traits\Xid;
  * @method static \Illuminate\Database\Eloquent\Builder|BillingPromocodeStripe withoutTrashed()
  * @mixin \Eloquent
  */
-class BillingPromocodeStripe extends BaseModel
+class BillingPromocodeStripe extends InviteCode
 {
-    use AvailableScope;
-    use SoftDeletes;
-    use Xid;
-    use PackageFactoryTrait;
-
     protected $table = 'billing_promocodes_stripe';
 
-    protected $fillable = [
-        'internal_name',
-        'code',
-        'description',
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
 
-        'active_from',
-        'expires_at',
-        'uses_max',
+        $fillables = [
+            'description_discount_percentage',
+            'description_discount_amount_cents',
+            'stripe_coupon_id',
+        ];
 
-        'for_user_id',
-        'for_user_type',
-        'for_email',
-        'for_ip',
-
-        'description_discount_percentage',
-        'description_discount_amount_cents',
-        'stripe_coupon_id',
-
-    ];
+        $this->fillable = array_merge($this->fillable, $fillables);
+    }
 }

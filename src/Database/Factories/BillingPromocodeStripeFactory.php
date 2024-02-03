@@ -2,7 +2,6 @@
 
 namespace Yormy\PromocodeLaravel\Database\Factories;
 
-use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Yormy\PromocodeLaravel\Models\BillingPromocodeStripe;
 

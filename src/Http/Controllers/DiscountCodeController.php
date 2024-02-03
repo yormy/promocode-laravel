@@ -4,33 +4,34 @@ namespace Yormy\PromocodeLaravel\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Yormy\Apiresponse\Facades\ApiResponse;
+use Yormy\PromocodeLaravel\DataObjects\DiscountCode\DiscountCodeDataRequest;
+use Yormy\PromocodeLaravel\DataObjects\DiscountCode\DiscountCodeDataResponse;
 use Yormy\PromocodeLaravel\DataObjects\InviteCode\InviteCodeDataRequest;
 use Yormy\PromocodeLaravel\DataObjects\InviteCode\InviteCodeDataResponse;
-use Yormy\PromocodeLaravel\Models\PromocodeInvite;
-use Yormy\PromocodeLaravel\Repositories\PromocodeInviteRepository;
+use Yormy\PromocodeLaravel\Models\BillingPromocodeStripe;
+use Yormy\PromocodeLaravel\Repositories\PromocodeDiscountRepository;
 
 /**
  * @group Promocodes
  *
- * @subgroup Invite
+ * @subgroup Discounts
  * @subgroupDescription
- * Manage invite codes
+ * Manage stripe discount codes
  */
 class DiscountCodeController
 {
-
     /**
      * Index
      *
-     * @responseFieldsDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeDataResponse
-     * @responseApiDTOCollection Yormy\PromocodeLaravel\DataObjects\InviteCodeDataResponse paginate=5
+     * @responseFieldsDTO Yormy\PromocodeLaravel\DataObjects\Promocode\DiscountCodeDataResponse
+     * @responseApiDTOCollection Yormy\PromocodeLaravel\DataObjects\Promocode\DiscountCodeDataResponse paginate=5
      * @responseApiType successResponseCreated
      */
     public function index(Request $request)
     {
-        $inviteCodes = PromocodeInvite::all();
+        $discountCodes = BillingPromocodeStripe::all();
 
-        $dto = InviteCodeDataResponse::collection($inviteCodes);
+        $dto = DiscountCodeDataResponse::collection($discountCodes);
 
         return ApiResponse::withData($dto)->successResponse();
     }
@@ -38,16 +39,16 @@ class DiscountCodeController
     /**
      * Store
      *
-     * @bodyParamDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeDataRequest
+     * @bodyParamDTO Yormy\PromocodeLaravel\DataObjects\Promocode\DiscountCodeDataRequest
      *
-     * @responseFieldsDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeDataResponse
-     * @responseApiDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeDataResponse
+     * @responseFieldsDTO Yormy\PromocodeLaravel\DataObjects\Promocode\DiscountCodeDataResponse
+     * @responseApiDTO Yormy\PromocodeLaravel\DataObjects\Promocode\DiscountCodeDataResponse
      * @responseApiType successResponseCreated
      */
-    public function store(InviteCodeDataRequest $data)
+    public function store(DiscountCodeDataRequest $data)
     {
-        $promocodeInviteRepository= new PromocodeInviteRepository();
-        $new = $promocodeInviteRepository->create($data);
+        $promocodeDiscountRepository= new PromocodeDiscountRepository();
+        $new = $promocodeDiscountRepository->create($data);
 
         $dto = InviteCodeDataResponse::fromModel($new);
 
@@ -57,18 +58,18 @@ class DiscountCodeController
     /**
      * Update
      *
-     * @bodyParamDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeDataRequest
+     * @bodyParamDTO Yormy\PromocodeLaravel\DataObjects\Promocode\DiscountCodeDataRequest
      *
-     * @responseFieldsDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeDataResponse
-     * @responseApiDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeDataResponse
+     * @responseFieldsDTO Yormy\PromocodeLaravel\Promocode\DiscountCodeDataResponse
+     * @responseApiDTO Yormy\PromocodeLaravel\DataObjects\Promocode\DiscountCodeDataResponse
      * @responseApiType successResponseUpdated
      */
-    public function update(InviteCodeDataRequest $data, PromocodeInvite $code_xid)
+    public function update(DiscountCodeDataRequest $data, BillingPromocodeStripe $code_xid)
     {
         $promocodeInvite = $code_xid;
 
-        $promocodeInviteRepository= new PromocodeInviteRepository($promocodeInvite);
-        $updated = $promocodeInviteRepository->update($data);
+        $promocodeDiscountRepository= new PromocodeDiscountRepository($promocodeInvite);
+        $updated = $promocodeDiscountRepository->update($data);
 
         $dto = InviteCodeDataResponse::fromModel($updated);
 
@@ -78,10 +79,10 @@ class DiscountCodeController
     /**
      * Destroy
      *
-     * @responseApiDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeDataResponse
+     * @responseApiDTO Yormy\PromocodeLaravel\DataObjects\Promocode\DiscountCodeDataResponse
      * @responseApiType successResponseDeleted
      */
-    public function destroy(PromocodeInvite $code_xid)
+    public function destroy(BillingPromocodeStripe $code_xid)
     {
         $code_xid->delete();
 
