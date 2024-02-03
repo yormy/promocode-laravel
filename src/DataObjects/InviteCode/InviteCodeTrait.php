@@ -11,7 +11,9 @@ trait InviteCodeTrait
     {
         $rules = parent::rules($context);
 
-        $rules['code'] = ['required', 'string', 'max:10', Rule::unique('promocodes_invites')->ignore($context->payload['xid'], 'xid')];
+        $currentXid = collect($context->payload)->get('xid');
+
+        $rules['code'] = ['required', 'string', 'max:10', Rule::unique('promocodes_invites')->ignore($currentXid, 'xid')];
 
         return $rules;
     }

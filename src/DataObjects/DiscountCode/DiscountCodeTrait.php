@@ -10,11 +10,11 @@ trait DiscountCodeTrait
 {
     public static function prepareForPipeline(Collection $properties) : Collection
     {
-        if (null == $properties['description_discount_percentage']) {
+        if (null == $properties->get('description_discount_percentage')) {
             unset ($properties['description_discount_percentage']);
         }
 
-        if (null == $properties['description_discount_amount_cents']) {
+        if (null == $properties->get('description_discount_amount_cents')) {
             unset ($properties['description_discount_amount_cents']);
         }
 
@@ -25,7 +25,9 @@ trait DiscountCodeTrait
     {
         $rules = parent::rules($context);
 
-        $rules['code'] = ['required', 'string', 'max:10', Rule::unique('billing_promocodes_stripe')->ignore($context->payload['xid'], 'xid')];
+        $currentXid = collect($context->payload)->get('xid');
+
+        $rules['code'] = ['sometimes', 'string', 'max:10', Rule::unique('billing_promocodes_stripe')->ignore($currentXid, 'xid')];
 
         $rules['description_discount_amount_cents'] = [
             'required_without:description_discount_percentage',

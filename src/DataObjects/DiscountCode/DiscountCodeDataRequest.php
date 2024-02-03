@@ -27,6 +27,18 @@ class DiscountCodeDataRequest extends PromocodeDataRequest
         public ?int $description_discount_percentage,
         public string $stripe_coupon_id,
     ) {
+        parent::__construct(
+            $xid,
+            $internal_name,
+            $description,
+            $code,
+            $uses_max,
+            $active_from,
+            $expires_at,
+            $for_user_id,
+            $for_ip,
+            $for_email,
+        );
     }
 
 
