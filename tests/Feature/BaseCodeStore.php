@@ -15,16 +15,16 @@ abstract class BaseCodeStore extends TestCase
     /**
      * @test
      *
-     * @group promocode-invite
+     * @group promocode
      *
      */
-    public function InviteCode_Store_RequiredFieldsPresent()
+    public function Code_Store_RequiredFieldsPresent()
     {
         $requiredFields = [
             'internal_name',
             'expires_at',
             'active_from',
-            'uses_max'
+            'uses_max',
         ];
         $this->withExceptionHandling();
         $data = $this->getPostData();
@@ -41,10 +41,10 @@ abstract class BaseCodeStore extends TestCase
     /**
      * @test
      *
-     * @group promocode-invite
+     * @group promocode
      *
      */
-    public function InviteCode_Create_Success()
+    public function Code_Create_Success()
     {
         $code = CodeGenerator::generate(CodeGenerator::TYPE_NUMERIC_ALPHA_UPPERCASE, 9);
         $data = $this->getPostData();
@@ -73,18 +73,18 @@ abstract class BaseCodeStore extends TestCase
     /**
      * @test
      *
-     * @group promocode-invite
+     * @group promocode
      *
      */
-    public function InviteCode_Update_Success()
+    public function Code_Update_Success()
     {
         $internalName = "Hello Test";
 
-        $promocodeInvite = PromocodeInvite::factory()->create();
+        $promocode = $this->factoryCreate();
 
         $data = $this->getPostData();
         $data['internal_name'] = $internalName;
-        $response = $this->json('PUT', route(static::ROUTE_UPDATE, $promocodeInvite->xid), $data);
+        $response = $this->json('PUT', route(static::ROUTE_UPDATE, $promocode->xid), $data);
 
         $response->assertSuccessful();
         $response->assertJsonDataItemNotHasElement('xid', $data['xid']);
@@ -108,27 +108,27 @@ abstract class BaseCodeStore extends TestCase
     /**
      * @test
      *
-     * @group promocode-invite
+     * @group promocode
      *
      */
-    public function InviteCode_Delete_Success()
+    public function Code_Delete_Success()
     {
-        $promocodeInvite = PromocodeInvite::factory()->create();
+        $promocode = $this->factoryCreate();
 
-        $response = $this->json('DELETE', route(static::ROUTE_DESTROY, $promocodeInvite->xid));
+        $response = $this->json('DELETE', route(static::ROUTE_DESTROY, $promocode->xid));
         $response->assertSuccessful();
 
-        $models = PromocodeInvite::where('xid', $promocodeInvite->xid)->get();
+        $models = $this->find(['xid' => $promocode->xid]);
+
         $this->assertTrue($models->isEmpty());
     }
 
     /**
      * @test
      *
-     * @group promocode-invite
-     *
+     * @group promocode
      */
-    public function InviteCode_CreateDuplicate_Failed()
+    public function Code_CreateDuplicate_Failed()
     {
         $code = CodeGenerator::generate(CodeGenerator::TYPE_NUMERIC_ALPHA_UPPERCASE, 9);
         $data = $this->getPostData();
@@ -137,16 +137,17 @@ abstract class BaseCodeStore extends TestCase
         $this->withExceptionHandling();
         $this->json('POST', route(static::ROUTE_STORE), $data);
         $response = $this->json('POST', route(static::ROUTE_STORE), $data);
+
         $response->assertJsonValidationErrorFor('code');
     }
 
     /**
      * @test
      *
-     * @group promocode-invite
+     * @group promocode
      *
      */
-    public function InviteCode_CreateDuplicateTrashed_Failed()
+    public function Code_CreateDuplicateTrashed_Failed()
     {
         $code = CodeGenerator::generate(CodeGenerator::TYPE_NUMERIC_ALPHA_UPPERCASE, 9);
         $data = $this->getPostData();
@@ -154,7 +155,9 @@ abstract class BaseCodeStore extends TestCase
 
         $this->withExceptionHandling();
         $this->json('POST', route(static::ROUTE_STORE), $data);
-        PromocodeInvite::where('code', $code)->get()->first()->delete();
+
+        $models = $this->find(['code' => $code]);
+        $models->first()->delete();
 
         $response = $this->json('POST', route(static::ROUTE_STORE), $data);
         $response->assertJsonValidationErrorFor('code');
@@ -163,10 +166,10 @@ abstract class BaseCodeStore extends TestCase
     /**
      * @test
      *
-     * @group promocode-invite
+     * @group promocode
      *
      */
-    public function InviteCode_ExpiresAfterActiveFrom()
+    public function Code_ExpiresAfterActiveFrom()
     {
         $data = $this->getPostData();
         $data['active_from'] = Carbon::now();
@@ -176,26 +179,4 @@ abstract class BaseCodeStore extends TestCase
         $response = $this->json('POST', route(static::ROUTE_STORE), $data);
         $response->assertJsonValidationErrorFor('expires_at');
     }
-
-    // ---------- HELPERS ----------
-    private function getPostData()
-    {
-        $data = [
-            'xid' => '1111',
-            'internal_name' => 'Christmas bonus',
-            'description' => 'description',
-            'code'=> CodeGenerator::generate(CodeGenerator::TYPE_NUMERIC_ALPHA_UPPERCASE, 9),
-            'uses_max'=> 10,
-            'uses_current'=> 2,
-            'uses_left'=> 1,
-            'for_user_id'=> 1,
-            'for_ip'=> '127.0.0.1',
-            'for_email'=> 'example@example.com',
-            'active_from'=> '2020-01-01 10:10:10',
-            'expires_at'=> '2026-12-12 10:10:10',
-        ];
-
-        return $data;
-    }
-
 }

@@ -10,7 +10,6 @@ abstract class PromocodeData extends Data
     {
         $rules['internal_name'] = ['required', 'string', 'max:100'];
         $rules['description'] = ['required', 'string', 'max:100'];
-        $rules['code'] = ['unique:promocodes_invites,code', 'string', 'max:9'];
 
         $rules['uses_max'] = ['required', 'integer', 'min:0','max:10000'];
         $rules['active_from'] = ['required', 'date'];

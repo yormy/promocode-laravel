@@ -4,10 +4,10 @@ namespace Yormy\PromocodeLaravel\DataObjects\DiscountCode;
 
 use Carbon\CarbonImmutable;
 use Yormy\PromocodeLaravel\DataObjects\Promocode\PromocodeDataRequest;
-use Yormy\PromocodeLaravel\Services\CodeGenerator;
 
 class DiscountCodeDataRequest extends PromocodeDataRequest
 {
+    use UseDiscountCodeExtension;
 
     public function __construct(
         public string $internal_name,
@@ -22,23 +22,23 @@ class DiscountCodeDataRequest extends PromocodeDataRequest
         public ?string $for_ip,
         public ?string $for_email,
 
-        public ?int $description_discount_amount,
+        public ?int $description_discount_amount_cents,
         public ?int $description_discount_percentage,
-        public string $stripe_discount_coupon,
+        public string $stripe_coupon_id,
     ) {
-        parent::__construct(
-            internal_name: $internal_name,
-            description: $description,
-            code: $code,
-
-            uses_max: $uses_max,
-            active_from: $active_from,
-            expires_at: $expires_at,
-
-            for_user_id: $for_user_id,
-            for_ip: $for_ip,
-            for_email: $for_email,
-        );
+//        parent::__construct(
+//            internal_name: $internal_name,
+//            description: $description,
+//            code: $code,
+//
+//            uses_max: $uses_max,
+//            active_from: $active_from,
+//            expires_at: $expires_at,
+//
+//            for_user_id: $for_user_id,
+//            for_ip: $for_ip,
+//            for_email: $for_email,
+//        );
     }
 
 

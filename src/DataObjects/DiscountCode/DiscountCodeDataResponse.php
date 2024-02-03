@@ -7,6 +7,8 @@ use Yormy\PromocodeLaravel\DataObjects\Promocode\PromocodeDataResponse;
 
 class DiscountCodeDataResponse extends PromocodeDataResponse
 {
+    use UseDiscountCodeExtension;
+
     public function __construct(
         public string $xid,
         public string $internal_name,

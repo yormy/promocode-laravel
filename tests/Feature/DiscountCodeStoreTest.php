@@ -3,14 +3,14 @@
 namespace Yormy\PromocodeLaravel\Tests\Feature;
 
 use Illuminate\Database\Eloquent\Collection;
-use Yormy\PromocodeLaravel\Models\PromocodeInvite;
+use Yormy\PromocodeLaravel\Models\BillingPromocodeStripe;
 use Yormy\PromocodeLaravel\Services\CodeGenerator;
 
-class InviteCodeStoreTest extends BaseCodeStore
+class DiscountCodeStoreTest extends BaseCodeStore
 {
-    const ROUTE_STORE = 'api.v1.admin.promocodes.invites.store';
-    const ROUTE_UPDATE = 'api.v1.admin.promocodes.invites.update';
-    const ROUTE_DESTROY = 'api.v1.admin.promocodes.invites.destroy';
+    const ROUTE_STORE = 'api.v1.admin.promocodes.discounts.store';
+    const ROUTE_UPDATE = 'api.v1.admin.promocodes.discounts.update';
+    const ROUTE_DESTROY = 'api.v1.admin.promocodes.discounts.destroy';
 
     protected function getPostData()
     {
@@ -27,18 +27,21 @@ class InviteCodeStoreTest extends BaseCodeStore
             'for_email'=> 'example@example.com',
             'active_from'=> '2020-01-01 10:10:10',
             'expires_at'=> '2026-12-12 10:10:10',
+
+            'stripe_coupon_id' => 'stripe_123123',
+            'description_discount_percentage' => 10,
         ];
 
         return $data;
     }
 
-    protected function factoryCreate(): PromocodeInvite
+    protected function factoryCreate(): BillingPromocodeStripe
     {
-        return PromocodeInvite::factory()->create();
+        return BillingPromocodeStripe::factory()->create();
     }
 
     protected function find(array $attributes): Collection
     {
-        return PromocodeInvite::where($attributes)->get();
+        return BillingPromocodeStripe::where($attributes)->get();
     }
 }

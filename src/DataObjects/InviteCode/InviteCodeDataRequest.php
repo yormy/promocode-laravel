@@ -6,5 +6,5 @@ use Yormy\PromocodeLaravel\DataObjects\Promocode\PromocodeDataRequest;
 
 class InviteCodeDataRequest extends PromocodeDataRequest
 {
-
+    use UseInviteCodeExtention;
 }
