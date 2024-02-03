@@ -50,7 +50,7 @@ class DiscountCodeController
         $promocodeDiscountRepository= new PromocodeDiscountRepository();
         $new = $promocodeDiscountRepository->create($data);
 
-        $dto = InviteCodeDataResponse::fromModel($new);
+        $dto = DiscountCodeDataResponse::fromModel($new);
 
         return ApiResponse::withData($dto)->successResponseCreated();
     }
@@ -71,7 +71,7 @@ class DiscountCodeController
         $promocodeDiscountRepository= new PromocodeDiscountRepository($promocodeInvite);
         $updated = $promocodeDiscountRepository->update($data);
 
-        $dto = InviteCodeDataResponse::fromModel($updated);
+        $dto = DiscountCodeDataResponse::fromModel($updated);
 
         return ApiResponse::withData($dto)->successResponseUpdated();
     }
