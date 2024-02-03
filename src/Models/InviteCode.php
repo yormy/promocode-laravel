@@ -44,6 +44,7 @@ abstract class InviteCode extends BaseModel
         'is_available' => 'boolean',
         'active_from' => 'datetime',
         'expires_at' => 'datetime',
+        'deleted_at' => 'datetime',
     ];
 
     public static function generate(): string
