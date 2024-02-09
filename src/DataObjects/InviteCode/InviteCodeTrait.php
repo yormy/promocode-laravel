@@ -13,7 +13,7 @@ trait InviteCodeTrait
 
         $currentXid = collect($context->payload)->get('xid');
 
-        $rules['code'] = ['required', 'string', 'max:10', Rule::unique('promocodes_invites')->ignore($currentXid, 'xid')];
+        $rules['code'] = ['sometimes', 'string', 'max:10', Rule::unique('billing_promocodes_stripe')->ignore($currentXid, 'xid')];
 
         return $rules;
     }
