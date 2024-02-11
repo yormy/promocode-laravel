@@ -18,7 +18,7 @@ abstract class PromocodeFactory extends Factory
 
             'internal_name' => $this->faker->word,
             'code' => PromocodeInvite::generate(),
-            'description' => $this->faker->words(5),
+            'description' => $this->faker->text(100),
             'active_from' => Carbon::now(),
             'expires_at' => null,
             'uses_max' => 1,
