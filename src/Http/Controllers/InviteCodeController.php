@@ -22,8 +22,8 @@ class InviteCodeController
     /**
      * Index
      *
-     * @responseFieldsDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeDataResponse
-     * @responseApiDTOCollection Yormy\PromocodeLaravel\DataObjects\InviteCodeDataResponse paginate=5
+     * @responseFieldsDTO Yormy\PromocodeLaravel\DataObjects\InviteCode\InviteCodeDataResponse
+     * @responseApiDTOCollection Yormy\PromocodeLaravel\DataObjects\InviteCode\InviteCodeDataResponse paginate=5
      * @responseApiType successResponseCreated
      */
     public function index(Request $request)
@@ -38,10 +38,10 @@ class InviteCodeController
     /**
      * Store
      *
-     * @bodyParamDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeDataRequest
+     * @bodyParamDTO Yormy\PromocodeLaravel\DataObjects\InviteCode\InviteCodeDataRequest
      *
-     * @responseFieldsDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeDataResponse
-     * @responseApiDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeDataResponse
+     * @responseFieldsDTO Yormy\PromocodeLaravel\DataObjects\InviteCode\InviteCodeDataResponse
+     * @responseApiDTO Yormy\PromocodeLaravel\DataObjects\InviteCode\InviteCodeDataResponse
      * @responseApiType successResponseCreated
      */
     public function store(InviteCodeDataRequest $data)
@@ -57,10 +57,10 @@ class InviteCodeController
     /**
      * Update
      *
-     * @bodyParamDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeDataRequest
+     * @bodyParamDTO Yormy\PromocodeLaravel\DataObjects\InviteCode\InviteCodeDataRequest
      *
-     * @responseFieldsDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeDataResponse
-     * @responseApiDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeDataResponse
+     * @responseFieldsDTO Yormy\PromocodeLaravel\DataObjects\InviteCode\InviteCodeDataResponse
+     * @responseApiDTO Yormy\PromocodeLaravel\DataObjects\InviteCode\InviteCodeDataResponse
      * @responseApiType successResponseUpdated
      */
     public function update(InviteCodeDataRequest $data, PromocodeInvite $code_xid)
@@ -78,7 +78,7 @@ class InviteCodeController
     /**
      * Destroy
      *
-     * @responseApiDTO Yormy\PromocodeLaravel\DataObjects\InviteCodeDataResponse
+     * @responseApiDTO Yormy\PromocodeLaravel\DataObjects\InviteCode\InviteCodeDataResponse
      * @responseApiType successResponseDeleted
      */
     public function destroy(PromocodeInvite $code_xid)
