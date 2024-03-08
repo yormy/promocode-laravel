@@ -23,8 +23,8 @@ class DiscountCodeController
     /**
      * Index
      *
-     * @responseFieldsDTO Yormy\PromocodeLaravel\DataObjects\Promocode\DiscountCodeDataResponse
-     * @responseApiDTOCollection Yormy\PromocodeLaravel\DataObjects\Promocode\DiscountCodeDataResponse paginate=5
+     * @responseFieldsDTO Yormy\PromocodeLaravel\DataObjects\DiscountCode\DiscountCodeDataResponse
+     * @responseApiDTOCollection Yormy\PromocodeLaravel\DataObjects\DiscountCode\DiscountCodeDataResponse paginate=5
      * @responseApiType successResponseCreated
      */
     public function index(Request $request)
@@ -39,10 +39,10 @@ class DiscountCodeController
     /**
      * Store
      *
-     * @bodyParamDTO Yormy\PromocodeLaravel\DataObjects\Promocode\DiscountCodeDataRequest
+     * @bodyParamDTO Yormy\PromocodeLaravel\DataObjects\DiscountCode\DiscountCodeDataRequest
      *
-     * @responseFieldsDTO Yormy\PromocodeLaravel\DataObjects\Promocode\DiscountCodeDataResponse
-     * @responseApiDTO Yormy\PromocodeLaravel\DataObjects\Promocode\DiscountCodeDataResponse
+     * @responseFieldsDTO Yormy\PromocodeLaravel\DataObjects\DiscountCode\DiscountCodeDataResponse
+     * @responseApiDTO Yormy\PromocodeLaravel\DataObjects\DiscountCode\DiscountCodeDataResponse
      * @responseApiType successResponseCreated
      */
     public function store(DiscountCodeDataRequest $data)
@@ -58,10 +58,10 @@ class DiscountCodeController
     /**
      * Update
      *
-     * @bodyParamDTO Yormy\PromocodeLaravel\DataObjects\Promocode\DiscountCodeDataRequest
+     * @bodyParamDTO Yormy\PromocodeLaravel\DataObjects\DiscountCode\DiscountCodeDataRequest
      *
-     * @responseFieldsDTO Yormy\PromocodeLaravel\Promocode\DiscountCodeDataResponse
-     * @responseApiDTO Yormy\PromocodeLaravel\DataObjects\Promocode\DiscountCodeDataResponse
+     * @responseFieldsDTO Yormy\PromocodeLaravel\DataObjects\DiscountCode\DiscountCodeDataResponse
+     * @responseApiDTO Yormy\PromocodeLaravel\DataObjects\DiscountCode\DiscountCodeDataResponse
      * @responseApiType successResponseUpdated
      */
     public function update(DiscountCodeDataRequest $data, DiscountCodeStripe $code_xid)
@@ -79,7 +79,7 @@ class DiscountCodeController
     /**
      * Destroy
      *
-     * @responseApiDTO Yormy\PromocodeLaravel\DataObjects\Promocode\DiscountCodeDataResponse
+     * @responseApiDTO Yormy\PromocodeLaravel\DataObjects\DiscountCode\DiscountCodeDataResponse
      * @responseApiType successResponseDeleted
      */
     public function destroy(DiscountCodeStripe $code_xid)
