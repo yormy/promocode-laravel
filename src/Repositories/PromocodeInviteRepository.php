@@ -11,7 +11,7 @@ class PromocodeInviteRepository
 {
     public function __construct(private ?PromocodeInvite $model = null)
     {
-        if (!$model) {
+        if (! $model) {
             $this->model = new PromocodeInvite();
         }
     }

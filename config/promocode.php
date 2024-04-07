@@ -17,6 +17,6 @@ return [
     'invite' => [
         'length' => 9,
         'type' => CodeGenerator::TYPE_NUMERIC_ALPHA_UPPERCASE,
-    ]
+    ],
 
 ];

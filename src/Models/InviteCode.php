@@ -12,8 +12,8 @@ use Yormy\Xid\Models\Traits\Xid;
 abstract class InviteCode extends BaseModel
 {
     use AvailableScope;
-    use SoftDeletes;
     use PackageFactoryTrait;
+    use SoftDeletes;
     use Xid;
 
     protected $table = 'promocodes_invites';
@@ -55,19 +55,19 @@ abstract class InviteCode extends BaseModel
         return CodeGenerator::generate($type, $length);
     }
 
-    public function getUsesLeftAttribute() : int
+    public function getUsesLeftAttribute(): int
     {
         return max($this->uses_max - $this->uses_current, 0);
     }
 
-    public function getIsActiveAttribute() : int
+    public function getIsActiveAttribute(): int
     {
-        return $this->active_from <= Carbon::now() && ( $this->expires_at > Carbon::now() || $this->expires_at === null);
+        return $this->active_from <= Carbon::now() && ($this->expires_at > Carbon::now() || $this->expires_at === null);
     }
 
-    public function getIsAvailableAttribute() : int
+    public function getIsAvailableAttribute(): int
     {
-        return $this->is_active && $this->uses_left > 0 ;
+        return $this->is_active && $this->uses_left > 0;
     }
 
     public function getRouteKeyName()

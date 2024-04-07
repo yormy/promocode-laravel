@@ -11,7 +11,7 @@ class PromocodeDiscountRepository
 {
     public function __construct(private ?DiscountCodeStripe $model = null)
     {
-        if (!$model) {
+        if (! $model) {
             $this->model = new DiscountCodeStripe();
         }
     }

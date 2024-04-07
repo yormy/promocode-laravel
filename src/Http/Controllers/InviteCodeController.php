@@ -18,7 +18,6 @@ use Yormy\PromocodeLaravel\Repositories\PromocodeInviteRepository;
  */
 class InviteCodeController
 {
-
     /**
      * Index
      *
@@ -46,7 +45,7 @@ class InviteCodeController
      */
     public function store(InviteCodeDataRequest $data)
     {
-        $promocodeInviteRepository= new PromocodeInviteRepository();
+        $promocodeInviteRepository = new PromocodeInviteRepository();
         $new = $promocodeInviteRepository->create($data);
 
         $dto = InviteCodeDataResponse::fromModel($new);
@@ -67,7 +66,7 @@ class InviteCodeController
     {
         $promocodeInvite = $code_xid;
 
-        $promocodeInviteRepository= new PromocodeInviteRepository($promocodeInvite);
+        $promocodeInviteRepository = new PromocodeInviteRepository($promocodeInvite);
         $updated = $promocodeInviteRepository->update($data);
 
         $dto = InviteCodeDataResponse::fromModel($updated);
@@ -87,5 +86,4 @@ class InviteCodeController
 
         return ApiResponse::withData($code_xid)->successResponseDeleted();
     }
-
 }

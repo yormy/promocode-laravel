@@ -4,7 +4,6 @@ namespace Yormy\PromocodeLaravel\Tests\Feature;
 
 use Illuminate\Support\Carbon;
 use Yormy\AssertLaravel\Traits\RouteHelperTrait;
-use Yormy\PromocodeLaravel\Models\PromocodeInvite;
 use Yormy\PromocodeLaravel\Services\CodeGenerator;
 use Yormy\PromocodeLaravel\Tests\TestCase;
 
@@ -16,7 +15,6 @@ abstract class BaseCodeStore extends TestCase
      * @test
      *
      * @group promocode
-     *
      */
     public function Code_Store_RequiredFieldsPresent()
     {
@@ -42,7 +40,6 @@ abstract class BaseCodeStore extends TestCase
      * @test
      *
      * @group promocode
-     *
      */
     public function Code_Create_Success()
     {
@@ -74,11 +71,10 @@ abstract class BaseCodeStore extends TestCase
      * @test
      *
      * @group promocode
-     *
      */
     public function Code_Update_Success()
     {
-        $internalName = "Hello Test";
+        $internalName = 'Hello Test';
 
         $promocode = $this->factoryCreate();
 
@@ -104,12 +100,10 @@ abstract class BaseCodeStore extends TestCase
         return $response;
     }
 
-
     /**
      * @test
      *
      * @group promocode
-     *
      */
     public function Code_Delete_Success()
     {
@@ -145,7 +139,6 @@ abstract class BaseCodeStore extends TestCase
      * @test
      *
      * @group promocode
-     *
      */
     public function Code_CreateDuplicateTrashed_Failed()
     {
@@ -167,7 +160,6 @@ abstract class BaseCodeStore extends TestCase
      * @test
      *
      * @group promocode
-     *
      */
     public function Code_ExpiresAfterActiveFrom()
     {

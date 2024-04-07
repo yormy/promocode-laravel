@@ -28,6 +28,6 @@ class RouteServiceProvider extends ServiceProvider
 
     protected function mapApiRoutes(): void
     {
-       AdminApiRoutes::register();
+        AdminApiRoutes::register();
     }
 }

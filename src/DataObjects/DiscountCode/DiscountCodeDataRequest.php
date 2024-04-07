@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Yormy\PromocodeLaravel\DataObjects\DiscountCode;
 
@@ -19,7 +21,7 @@ class DiscountCodeDataRequest extends PromocodeDataRequest
         public ?CarbonImmutable $active_from,
         public ?CarbonImmutable $expires_at,
 
-        public string | int | null $for_user_id,
+        public string|int|null $for_user_id,
         public ?string $for_ip,
         public ?string $for_email,
 
@@ -40,6 +42,4 @@ class DiscountCodeDataRequest extends PromocodeDataRequest
             $for_email,
         );
     }
-
-
 }

@@ -2,11 +2,6 @@
 
 namespace Yormy\PromocodeLaravel\Models;
 
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Yormy\CoreToolsLaravel\Traits\Factories\PackageFactoryTrait;
-use Yormy\PromocodeLaravel\Models\Scopes\AvailableScope;
-use Yormy\Xid\Models\Traits\Xid;
-
 /**
  * Yormy\PromocodeLaravel\Models\DiscountCodeStripe
  *

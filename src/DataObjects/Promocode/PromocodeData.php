@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Yormy\PromocodeLaravel\DataObjects\Promocode;
 
@@ -12,7 +14,7 @@ abstract class PromocodeData extends Data
         $rules['internal_name'] = ['required', 'string', 'max:100'];
         $rules['description'] = ['required', 'string', 'max:100'];
 
-        $rules['uses_max'] = ['required', 'integer', 'min:0','max:10000'];
+        $rules['uses_max'] = ['required', 'integer', 'min:0', 'max:10000'];
         $rules['active_from'] = ['required', 'date'];
         $rules['expires_at'] = ['required', 'date', 'after:active_from'];
 

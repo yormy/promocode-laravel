@@ -2,7 +2,6 @@
 
 namespace Yormy\PromocodeLaravel\Tests\Unit;
 
-use Yormy\PromocodeLaravel\DataObjects\PromocodeDto;
 use Yormy\PromocodeLaravel\Exceptions\InvalidCodeException;
 use Yormy\PromocodeLaravel\Models\PromocodeInvite;
 use Yormy\PromocodeLaravel\Services\PromocodeValidateInvite;

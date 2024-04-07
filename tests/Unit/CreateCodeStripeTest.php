@@ -44,9 +44,9 @@ class CreateCodeStripeTest extends TestCase
     public function Create_WitDiscountPercentage(): void
     {
         $promocodeStripe = DiscountCodeStripe::factory()->discountPercentage(10)->create([
-                'internal_name' => 'Some Internal Name',
-                'description' => 'Some description',
-            ]
+            'internal_name' => 'Some Internal Name',
+            'description' => 'Some description',
+        ]
         );
 
         $this->assertTrue(strlen($promocodeStripe->code) === 9);
@@ -60,9 +60,9 @@ class CreateCodeStripeTest extends TestCase
     public function Create_WitDiscountAmount(): void
     {
         $promocodeStripe = DiscountCodeStripe::factory()->discountAmount(10)->create([
-                'internal_name' => 'Some Internal Name',
-                'description' => 'Some description',
-            ]
+            'internal_name' => 'Some Internal Name',
+            'description' => 'Some description',
+        ]
         );
 
         $this->assertTrue(strlen($promocodeStripe->code) === 9);

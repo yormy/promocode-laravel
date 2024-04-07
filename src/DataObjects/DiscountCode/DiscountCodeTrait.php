@@ -1,21 +1,22 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Yormy\PromocodeLaravel\DataObjects\DiscountCode;
 
-use Illuminate\Support\Collection;
 use Illuminate\Validation\Rule;
 use Spatie\LaravelData\Support\Validation\ValidationContext;
 
 trait DiscountCodeTrait
 {
-    public static function prepareForPipeline(array $properties) : array
+    public static function prepareForPipeline(array $properties): array
     {
-        if (null == $properties->get('description_discount_percentage')) {
-            unset ($properties['description_discount_percentage']);
+        if ($properties->get('description_discount_percentage') == null) {
+            unset($properties['description_discount_percentage']);
         }
 
-        if (null == $properties->get('description_discount_amount_cents')) {
-            unset ($properties['description_discount_amount_cents']);
+        if ($properties->get('description_discount_amount_cents') == null) {
+            unset($properties['description_discount_amount_cents']);
         }
 
         return $properties;
@@ -33,13 +34,13 @@ trait DiscountCodeTrait
             'required_without:description_discount_percentage',
             'missing_with:description_discount_percentage',
             'integer',
-            'max:100'
+            'max:100',
         ];
         $rules['description_discount_percentage'] = [
             'required_without:description_discount_amount_cents',
             'missing_with:description_discount_amount_cents',
             'integer',
-            'max:100'
+            'max:100',
         ];
         $rules['stripe_coupon_id'] = ['required', 'string', 'max:100'];
 

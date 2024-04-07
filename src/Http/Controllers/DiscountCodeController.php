@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use Yormy\Apiresponse\Facades\ApiResponse;
 use Yormy\PromocodeLaravel\DataObjects\DiscountCode\DiscountCodeDataRequest;
 use Yormy\PromocodeLaravel\DataObjects\DiscountCode\DiscountCodeDataResponse;
-use Yormy\PromocodeLaravel\DataObjects\InviteCode\InviteCodeDataRequest;
-use Yormy\PromocodeLaravel\DataObjects\InviteCode\InviteCodeDataResponse;
 use Yormy\PromocodeLaravel\Models\DiscountCodeStripe;
 use Yormy\PromocodeLaravel\Repositories\PromocodeDiscountRepository;
 
@@ -47,7 +45,7 @@ class DiscountCodeController
      */
     public function store(DiscountCodeDataRequest $data)
     {
-        $promocodeDiscountRepository= new PromocodeDiscountRepository();
+        $promocodeDiscountRepository = new PromocodeDiscountRepository();
         $new = $promocodeDiscountRepository->create($data);
 
         $dto = DiscountCodeDataResponse::fromModel($new);
@@ -68,7 +66,7 @@ class DiscountCodeController
     {
         $promocodeInvite = $code_xid;
 
-        $promocodeDiscountRepository= new PromocodeDiscountRepository($promocodeInvite);
+        $promocodeDiscountRepository = new PromocodeDiscountRepository($promocodeInvite);
         $updated = $promocodeDiscountRepository->update($data);
 
         $dto = DiscountCodeDataResponse::fromModel($updated);
@@ -88,5 +86,4 @@ class DiscountCodeController
 
         return ApiResponse::withData($code_xid)->successResponseDeleted();
     }
-
 }

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Yormy\PromocodeLaravel\DataObjects\Promocode;
 
@@ -16,7 +18,7 @@ abstract class PromocodeDataResponse extends PromocodeData
         public ?CarbonImmutable $active_from,
         public ?CarbonImmutable $expires_at,
 
-        public string | int | null $for_user_id,
+        public string|int|null $for_user_id,
         public ?string $for_ip,
         public ?string $for_email,
 
@@ -25,7 +27,7 @@ abstract class PromocodeDataResponse extends PromocodeData
         public bool $is_active,
         public bool $is_available,
 
-        public CarbonImmutable | null $deleted_at,
+        public ?CarbonImmutable $deleted_at,
     ) {
     }
 
@@ -38,7 +40,7 @@ abstract class PromocodeDataResponse extends PromocodeData
             $model->description,
             $model->code,
 
-            (int)$model->uses_max,
+            (int) $model->uses_max,
             CarbonImmutable::parse($model->active_from),
             CarbonImmutable::parse($model->expires_at),
 
@@ -46,15 +48,14 @@ abstract class PromocodeDataResponse extends PromocodeData
             $model->for_ip,
             $model->for_email,
 
-            (int)$model->uses_current,
-            (int)$model->uses_left,
-            (bool)$model->is_active,
-            (bool)$model->is_available,
+            (int) $model->uses_current,
+            (int) $model->uses_left,
+            (bool) $model->is_active,
+            (bool) $model->is_available,
 
             CarbonImmutable::parse($model->deleted_at),
         ];
     }
-
 
     public static function fromModel($model): self
     {

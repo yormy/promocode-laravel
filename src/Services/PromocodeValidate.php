@@ -19,7 +19,7 @@ abstract class PromocodeValidate
 
     public static function getValid(?string $code)
     {
-        if (!$code) {
+        if (! $code) {
             return null;
         }
 
