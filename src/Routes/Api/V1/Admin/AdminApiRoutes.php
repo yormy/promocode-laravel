@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\PromocodeLaravel\Routes\Api\V1\Admin;
 
 use Illuminate\Support\Facades\Route;
@@ -10,10 +12,10 @@ class AdminApiRoutes
 {
     public static function register(): void
     {
-        Route::macro('PromocodesApiV1', function (string $prefix = '') {
+        Route::macro('PromocodesApiV1', function (string $prefix = ''): void {
             Route::prefix('promocodes/invites/'.$prefix)
                 ->name('promocodes.invites.')
-                ->group(function () {
+                ->group(function (): void {
                     Route::get('/', [InviteCodeController::class, 'index'])->name('index');
                     Route::post('/', [InviteCodeController::class, 'store'])->name('store');
                     Route::put('/{code_xid}', [InviteCodeController::class, 'update'])->name('update');
@@ -22,7 +24,7 @@ class AdminApiRoutes
 
             Route::prefix('promocodes/discounts/'.$prefix)
                 ->name('promocodes.discounts.')
-                ->group(function () {
+                ->group(function (): void {
                     Route::get('/', [DiscountCodeController::class, 'index'])->name('index');
                     Route::post('/', [DiscountCodeController::class, 'store'])->name('store');
                     Route::put('/{code_xid}', [DiscountCodeController::class, 'update'])->name('update');

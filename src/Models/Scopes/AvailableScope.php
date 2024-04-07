@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\PromocodeLaravel\Models\Scopes;
 
 use Carbon\CarbonImmutable;
@@ -11,7 +13,7 @@ trait AvailableScope
     {
         return $builder
             ->where('active_from', '<=', CarbonImmutable::now())
-            ->where(function ($q) {
+            ->where(function ($q): void {
                 $q->where('expires_at', '>', CarbonImmutable::now())
                     ->orWhereNull('expires_at');
             });
@@ -25,7 +27,7 @@ trait AvailableScope
 
     public function scopeForUser(Builder $builder, $user): Builder
     {
-        return $builder->where('for_user_type', get_class($user))
+        return $builder->where('for_user_type', $user::class)
             ->where('for_user_id', $user->id);
     }
 

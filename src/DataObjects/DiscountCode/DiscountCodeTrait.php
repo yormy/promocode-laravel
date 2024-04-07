@@ -11,11 +11,11 @@ trait DiscountCodeTrait
 {
     public static function prepareForPipeline(array $properties): array
     {
-        if ($properties->get('description_discount_percentage') == null) {
+        if ($properties->get('description_discount_percentage') === null) {
             unset($properties['description_discount_percentage']);
         }
 
-        if ($properties->get('description_discount_amount_cents') == null) {
+        if ($properties->get('description_discount_amount_cents') === null) {
             unset($properties['description_discount_amount_cents']);
         }
 

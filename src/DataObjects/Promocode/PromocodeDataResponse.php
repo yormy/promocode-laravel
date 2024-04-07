@@ -13,22 +13,25 @@ abstract class PromocodeDataResponse extends PromocodeData
         public string $internal_name,
         public string $description,
         public ?string $code,
-
         public ?int $uses_max,
         public ?CarbonImmutable $active_from,
         public ?CarbonImmutable $expires_at,
-
         public string|int|null $for_user_id,
         public ?string $for_ip,
         public ?string $for_email,
-
         public int $uses_current,
         public int $uses_left,
         public bool $is_active,
         public bool $is_available,
-
         public ?CarbonImmutable $deleted_at,
     ) {
+    }
+
+    public static function fromModel($model): self
+    {
+        $constuctorData = self::constructorData($model);
+
+        return new static(...$constuctorData);
     }
 
     protected static function constructorData($model): array
@@ -55,12 +58,5 @@ abstract class PromocodeDataResponse extends PromocodeData
 
             CarbonImmutable::parse($model->deleted_at),
         ];
-    }
-
-    public static function fromModel($model): self
-    {
-        $constuctorData = self::constructorData($model);
-
-        return new static(...$constuctorData);
     }
 }

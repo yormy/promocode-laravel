@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\PromocodeLaravel;
 
 use Illuminate\Database\Eloquent\Model;
@@ -10,14 +12,14 @@ use Yormy\PromocodeLaravel\ServiceProviders\RouteServiceProvider;
 
 class PromocodeServiceProvider extends ServiceProvider
 {
-    const CONFIG_FILE = __DIR__.'/../config/promocode.php';
+    public const CONFIG_FILE = __DIR__.'/../config/promocode.php';
 
-    const CONFIG_IDE_HELPER_FILE = __DIR__.'/../config/ide-helper.php';
+    public const CONFIG_IDE_HELPER_FILE = __DIR__.'/../config/ide-helper.php';
 
     /**
      * @psalm-suppress MissingReturnType
      */
-    public function boot(Router $router)
+    public function boot(Router $router): void
     {
         $this->publish();
 
@@ -35,13 +37,18 @@ class PromocodeServiceProvider extends ServiceProvider
     /**
      * @psalm-suppress MixedArgument
      */
-    public function register()
+    public function register(): void
     {
         $this->mergeConfigFrom(static::CONFIG_FILE, 'promocode');
         $this->mergeConfigFrom(static::CONFIG_IDE_HELPER_FILE, 'ide-helper');
 
         $this->app->register(EventServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
+    }
+
+    public function registerTranslations(): void
+    {
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'promocode');
     }
 
     private function publish(): void
@@ -69,13 +76,7 @@ class PromocodeServiceProvider extends ServiceProvider
         }
     }
 
-    public function registerTranslations(): void
-    {
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'promocode');
-    }
-
     private function morphMaps(): void
     {
-
     }
 }

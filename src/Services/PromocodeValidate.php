@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\PromocodeLaravel\Services;
 
 use Yormy\PromocodeLaravel\Exceptions\InvalidCodeException;
@@ -23,11 +25,9 @@ abstract class PromocodeValidate
             return null;
         }
 
-        $promocode = static::builderActive($code)
+        return static::builderActive($code)
             ->get()
             ->first();
-
-        return $promocode;
     }
 
     public static function checkForUser(string $code, $user)

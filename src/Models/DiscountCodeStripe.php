@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\PromocodeLaravel\Models;
 
 /**
@@ -16,6 +18,7 @@ namespace Yormy\PromocodeLaravel\Models;
  * @method static \Illuminate\Database\Eloquent\Builder|DiscountCodeStripe query()
  * @method static \Illuminate\Database\Eloquent\Builder|DiscountCodeStripe withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|DiscountCodeStripe withoutTrashed()
+ *
  * @mixin \Eloquent
  */
 class DiscountCodeStripe extends InviteCode

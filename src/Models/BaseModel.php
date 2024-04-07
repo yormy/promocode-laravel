@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\PromocodeLaravel\Models;
 
 use Illuminate\Database\Eloquent\Builder;
@@ -12,13 +14,14 @@ use Illuminate\Database\Eloquent\Prunable;
  * @method static Builder|BaseModel newModelQuery()
  * @method static Builder|BaseModel newQuery()
  * @method static Builder|BaseModel query()
+ *
  * @mixin \Eloquent
  */
 class BaseModel extends Model
 {
     use Prunable;
 
-    public function redeem()
+    public function redeem(): void
     {
         $this->increment('uses_current');
     }

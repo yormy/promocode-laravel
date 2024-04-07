@@ -14,11 +14,9 @@ abstract class PromocodeDataRequest extends PromocodeData
         public string $internal_name,
         public string $description,
         public ?string $code,
-
         public ?int $uses_max,
         public ?CarbonImmutable $active_from,
         public ?CarbonImmutable $expires_at,
-
         public string|int|null $for_user_id,
         public ?string $for_ip,
         public ?string $for_email,

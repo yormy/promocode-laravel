@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 $scores = [];
 $scores['stan']['code'] = ['low' => 30, 'medium' => 60];
 $scores['coverage'] = ['low' => 30, 'medium' => 60];
@@ -9,7 +11,7 @@ badgeInsightsSecurity();
 badgeInsightsCode();
 badgeStan();
 
-function badgeTestCoverage()
+function badgeTestCoverage(): void
 {
     global $scores;
     $image = 'test_coverage.svg';
@@ -40,7 +42,7 @@ function badgeTestCoverage()
     createBadge($label, $coverage, $color, $image, true);
 }
 
-function badgeInsightsSecurity()
+function badgeInsightsSecurity(): void
 {
     $image = 'insights_security.svg';
     $label = 'Security';
@@ -63,7 +65,7 @@ function badgeInsightsSecurity()
     createBadge($label, $issues, $color, $image);
 }
 
-function badgeInsightsCode()
+function badgeInsightsCode(): void
 {
     global $scores;
     $image = 'insights_code.svg';
@@ -90,7 +92,7 @@ function badgeInsightsCode()
     createBadge($label, $codePercentage, $color, $image, true);
 }
 
-function badgeStan()
+function badgeStan(): void
 {
     $path = './phpstan-baseline.neon';
     $label = 'phpstan';
@@ -107,7 +109,7 @@ function badgeStan()
     createBadge($label, $value, $color, $image);
 }
 
-function createBadge(string $label, string $value, string $color, string $filename, bool $percentage = false)
+function createBadge(string $label, string $value, string $color, string $filename, bool $percentage = false): void
 {
     $label = str_replace(' ', '_', $label);
 
@@ -116,7 +118,7 @@ function createBadge(string $label, string $value, string $color, string $filena
         $unit = '%25';
     }
 
-    exec("wget https://img.shields.io/badge/$label-$value$unit-$color -O badges/$filename");
+    exec("wget https://img.shields.io/badge/{$label}-{$value}{$unit}-{$color} -O badges/{$filename}");
 }
 
 function getInsights(): array

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yormy\PromocodeLaravel\ServiceProviders;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -7,12 +9,11 @@ use Yormy\PromocodeLaravel\Routes\Api\V1\Admin\AdminApiRoutes;
 
 class RouteServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         parent::boot();
 
         $this->map();
-
     }
 
     public function map(): void
