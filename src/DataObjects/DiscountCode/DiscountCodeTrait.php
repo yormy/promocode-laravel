@@ -8,7 +8,7 @@ use Spatie\LaravelData\Support\Validation\ValidationContext;
 
 trait DiscountCodeTrait
 {
-    public static function prepareForPipeline(Collection $properties) : Collection
+    public static function prepareForPipeline(array $properties) : array
     {
         if (null == $properties->get('description_discount_percentage')) {
             unset ($properties['description_discount_percentage']);
