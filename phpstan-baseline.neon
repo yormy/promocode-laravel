@@ -1,0 +1,331 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Cannot call method get\\(\\) on array\\.$#"
+			count: 2
+			path: src/DataObjects/DiscountCode/DiscountCodeDataRequest.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of function collect expects Illuminate\\\\Contracts\\\\Support\\\\Arrayable\\<\\(int\\|string\\), mixed\\>\\|iterable\\<\\(int\\|string\\), mixed\\>\\|null, mixed given\\.$#"
+			count: 1
+			path: src/DataObjects/DiscountCode/DiscountCodeDataRequest.php
+
+		-
+			message: "#^Unable to resolve the template type TKey in call to function collect$#"
+			count: 1
+			path: src/DataObjects/DiscountCode/DiscountCodeDataRequest.php
+
+		-
+			message: "#^Unable to resolve the template type TValue in call to function collect$#"
+			count: 1
+			path: src/DataObjects/DiscountCode/DiscountCodeDataRequest.php
+
+		-
+			message: "#^Cannot call method get\\(\\) on array\\.$#"
+			count: 2
+			path: src/DataObjects/DiscountCode/DiscountCodeDataResponse.php
+
+		-
+			message: "#^Method Yormy\\\\PromocodeLaravel\\\\DataObjects\\\\DiscountCode\\\\DiscountCodeDataResponse\\:\\:fromModel\\(\\) has parameter \\$model with no type specified\\.$#"
+			count: 1
+			path: src/DataObjects/DiscountCode/DiscountCodeDataResponse.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of function collect expects Illuminate\\\\Contracts\\\\Support\\\\Arrayable\\<\\(int\\|string\\), mixed\\>\\|iterable\\<\\(int\\|string\\), mixed\\>\\|null, mixed given\\.$#"
+			count: 1
+			path: src/DataObjects/DiscountCode/DiscountCodeDataResponse.php
+
+		-
+			message: "#^Unable to resolve the template type TKey in call to function collect$#"
+			count: 1
+			path: src/DataObjects/DiscountCode/DiscountCodeDataResponse.php
+
+		-
+			message: "#^Unable to resolve the template type TValue in call to function collect$#"
+			count: 1
+			path: src/DataObjects/DiscountCode/DiscountCodeDataResponse.php
+
+		-
+			message: "#^Unsafe usage of new static\\(\\)\\.$#"
+			count: 1
+			path: src/DataObjects/DiscountCode/DiscountCodeDataResponse.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of function collect expects Illuminate\\\\Contracts\\\\Support\\\\Arrayable\\<\\(int\\|string\\), mixed\\>\\|iterable\\<\\(int\\|string\\), mixed\\>\\|null, mixed given\\.$#"
+			count: 1
+			path: src/DataObjects/InviteCode/InviteCodeDataRequest.php
+
+		-
+			message: "#^Unable to resolve the template type TKey in call to function collect$#"
+			count: 1
+			path: src/DataObjects/InviteCode/InviteCodeDataRequest.php
+
+		-
+			message: "#^Unable to resolve the template type TValue in call to function collect$#"
+			count: 1
+			path: src/DataObjects/InviteCode/InviteCodeDataRequest.php
+
+		-
+			message: "#^Parameter \\#1 \\$value of function collect expects Illuminate\\\\Contracts\\\\Support\\\\Arrayable\\<\\(int\\|string\\), mixed\\>\\|iterable\\<\\(int\\|string\\), mixed\\>\\|null, mixed given\\.$#"
+			count: 1
+			path: src/DataObjects/InviteCode/InviteCodeDataResponse.php
+
+		-
+			message: "#^Unable to resolve the template type TKey in call to function collect$#"
+			count: 1
+			path: src/DataObjects/InviteCode/InviteCodeDataResponse.php
+
+		-
+			message: "#^Unable to resolve the template type TValue in call to function collect$#"
+			count: 1
+			path: src/DataObjects/InviteCode/InviteCodeDataResponse.php
+
+		-
+			message: "#^Method Carbon\\\\CarbonImmutable\\:\\:addMonth\\(\\) invoked with 1 parameter, 0 required\\.$#"
+			count: 1
+			path: src/DataObjects/Promocode/PromocodeDataRequest.php
+
+		-
+			message: "#^Method Yormy\\\\PromocodeLaravel\\\\DataObjects\\\\Promocode\\\\PromocodeDataResponse\\:\\:constructorData\\(\\) has parameter \\$model with no type specified\\.$#"
+			count: 1
+			path: src/DataObjects/Promocode/PromocodeDataResponse.php
+
+		-
+			message: "#^Method Yormy\\\\PromocodeLaravel\\\\DataObjects\\\\Promocode\\\\PromocodeDataResponse\\:\\:fromModel\\(\\) has parameter \\$model with no type specified\\.$#"
+			count: 1
+			path: src/DataObjects/Promocode/PromocodeDataResponse.php
+
+		-
+			message: "#^Unsafe usage of new static\\(\\)\\.$#"
+			count: 1
+			path: src/DataObjects/Promocode/PromocodeDataResponse.php
+
+		-
+			message: "#^Method Carbon\\\\Carbon\\:\\:subDay\\(\\) invoked with 1 parameter, 0 required\\.$#"
+			count: 2
+			path: src/Database/Factories/PromocodeFactory.php
+
+		-
+			message: "#^Method Yormy\\\\PromocodeLaravel\\\\Database\\\\Factories\\\\PromocodeFactory\\:\\:forUser\\(\\) has parameter \\$userCode with no type specified\\.$#"
+			count: 1
+			path: src/Database/Factories/PromocodeFactory.php
+
+		-
+			message: "#^Parameter \\#1 \\$state of method Illuminate\\\\Database\\\\Eloquent\\\\Factories\\\\Factory\\<Illuminate\\\\Database\\\\Eloquent\\\\Model\\>\\:\\:state\\(\\) expects array\\<string, mixed\\>\\|\\(callable\\(array\\<string, mixed\\>, Illuminate\\\\Database\\\\Eloquent\\\\Model\\|null\\)\\: array\\<string, mixed\\>\\), Closure\\(int\\)\\: array\\{uses_max\\: int\\} given\\.$#"
+			count: 1
+			path: src/Database/Factories/PromocodeFactory.php
+
+		-
+			message: "#^Class Yormy\\\\PromocodeLaravel\\\\Services\\\\PromocodeStripeService not found\\.$#"
+			count: 1
+			path: src/Facades/PromocodeStripeFacade.php
+
+		-
+			message: "#^Call to an undefined static method Yormy\\\\PromocodeLaravel\\\\DataObjects\\\\DiscountCode\\\\DiscountCodeDataResponse\\:\\:collection\\(\\)\\.$#"
+			count: 1
+			path: src/Http/Controllers/DiscountCodeController.php
+
+		-
+			message: "#^Method Yormy\\\\PromocodeLaravel\\\\Http\\\\Controllers\\\\DiscountCodeController\\:\\:destroy\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Http/Controllers/DiscountCodeController.php
+
+		-
+			message: "#^Method Yormy\\\\PromocodeLaravel\\\\Http\\\\Controllers\\\\DiscountCodeController\\:\\:index\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Http/Controllers/DiscountCodeController.php
+
+		-
+			message: "#^Method Yormy\\\\PromocodeLaravel\\\\Http\\\\Controllers\\\\DiscountCodeController\\:\\:store\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Http/Controllers/DiscountCodeController.php
+
+		-
+			message: "#^Method Yormy\\\\PromocodeLaravel\\\\Http\\\\Controllers\\\\DiscountCodeController\\:\\:update\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Http/Controllers/DiscountCodeController.php
+
+		-
+			message: "#^Call to an undefined static method Yormy\\\\PromocodeLaravel\\\\DataObjects\\\\InviteCode\\\\InviteCodeDataResponse\\:\\:collection\\(\\)\\.$#"
+			count: 1
+			path: src/Http/Controllers/InviteCodeController.php
+
+		-
+			message: "#^Method Yormy\\\\PromocodeLaravel\\\\Http\\\\Controllers\\\\InviteCodeController\\:\\:destroy\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Http/Controllers/InviteCodeController.php
+
+		-
+			message: "#^Method Yormy\\\\PromocodeLaravel\\\\Http\\\\Controllers\\\\InviteCodeController\\:\\:index\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Http/Controllers/InviteCodeController.php
+
+		-
+			message: "#^Method Yormy\\\\PromocodeLaravel\\\\Http\\\\Controllers\\\\InviteCodeController\\:\\:store\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Http/Controllers/InviteCodeController.php
+
+		-
+			message: "#^Method Yormy\\\\PromocodeLaravel\\\\Http\\\\Controllers\\\\InviteCodeController\\:\\:update\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Http/Controllers/InviteCodeController.php
+
+		-
+			message: "#^Call to an undefined static method Yormy\\\\PromocodeLaravel\\\\Models\\\\BaseModel\\:\\:whereColumn\\(\\)\\.$#"
+			count: 1
+			path: src/Models/BaseModel.php
+
+		-
+			message: "#^PHPDoc tag @mixin contains unknown class Eloquent\\.$#"
+			count: 1
+			path: src/Models/BaseModel.php
+
+		-
+			message: "#^PHPDoc tag @mixin contains unknown class Eloquent\\.$#"
+			count: 1
+			path: src/Models/DiscountCodeStripe.php
+
+		-
+			message: "#^Access to an undefined property Yormy\\\\PromocodeLaravel\\\\Models\\\\InviteCode\\:\\:\\$active_from\\.$#"
+			count: 1
+			path: src/Models/InviteCode.php
+
+		-
+			message: "#^Access to an undefined property Yormy\\\\PromocodeLaravel\\\\Models\\\\InviteCode\\:\\:\\$expires_at\\.$#"
+			count: 1
+			path: src/Models/InviteCode.php
+
+		-
+			message: "#^Access to an undefined property Yormy\\\\PromocodeLaravel\\\\Models\\\\InviteCode\\:\\:\\$is_active\\.$#"
+			count: 1
+			path: src/Models/InviteCode.php
+
+		-
+			message: "#^Access to an undefined property Yormy\\\\PromocodeLaravel\\\\Models\\\\InviteCode\\:\\:\\$uses_current\\.$#"
+			count: 1
+			path: src/Models/InviteCode.php
+
+		-
+			message: "#^Access to an undefined property Yormy\\\\PromocodeLaravel\\\\Models\\\\InviteCode\\:\\:\\$uses_left\\.$#"
+			count: 1
+			path: src/Models/InviteCode.php
+
+		-
+			message: "#^Access to an undefined property Yormy\\\\PromocodeLaravel\\\\Models\\\\InviteCode\\:\\:\\$uses_max\\.$#"
+			count: 1
+			path: src/Models/InviteCode.php
+
+		-
+			message: "#^Method Yormy\\\\PromocodeLaravel\\\\Models\\\\InviteCode\\:\\:getIsActiveAttribute\\(\\) should return int but returns bool\\.$#"
+			count: 1
+			path: src/Models/InviteCode.php
+
+		-
+			message: "#^Method Yormy\\\\PromocodeLaravel\\\\Models\\\\InviteCode\\:\\:getIsAvailableAttribute\\(\\) should return int but returns bool\\.$#"
+			count: 1
+			path: src/Models/InviteCode.php
+
+		-
+			message: "#^Method Yormy\\\\PromocodeLaravel\\\\Models\\\\InviteCode\\:\\:scopeAvailable\\(\\) should return Illuminate\\\\Contracts\\\\Database\\\\Eloquent\\\\Builder but returns Illuminate\\\\Database\\\\Query\\\\Builder\\.$#"
+			count: 1
+			path: src/Models/InviteCode.php
+
+		-
+			message: "#^Method Yormy\\\\PromocodeLaravel\\\\Models\\\\InviteCode\\:\\:scopeForUser\\(\\) has parameter \\$user with no type specified\\.$#"
+			count: 1
+			path: src/Models/InviteCode.php
+
+		-
+			message: "#^Parameter \\#1 \\$type of static method Yormy\\\\PromocodeLaravel\\\\Services\\\\CodeGenerator\\:\\:generate\\(\\) expects int, mixed given\\.$#"
+			count: 1
+			path: src/Models/InviteCode.php
+
+		-
+			message: "#^Parameter \\#2 \\$length of static method Yormy\\\\PromocodeLaravel\\\\Services\\\\CodeGenerator\\:\\:generate\\(\\) expects int, mixed given\\.$#"
+			count: 1
+			path: src/Models/InviteCode.php
+
+		-
+			message: "#^Cannot call method create\\(\\) on Yormy\\\\PromocodeLaravel\\\\Models\\\\DiscountCodeStripe\\|null\\.$#"
+			count: 1
+			path: src/Repositories/PromocodeDiscountRepository.php
+
+		-
+			message: "#^Cannot call method refresh\\(\\) on Yormy\\\\PromocodeLaravel\\\\Models\\\\DiscountCodeStripe\\|null\\.$#"
+			count: 1
+			path: src/Repositories/PromocodeDiscountRepository.php
+
+		-
+			message: "#^Cannot call method update\\(\\) on Yormy\\\\PromocodeLaravel\\\\Models\\\\DiscountCodeStripe\\|null\\.$#"
+			count: 1
+			path: src/Repositories/PromocodeDiscountRepository.php
+
+		-
+			message: "#^Cannot call method create\\(\\) on Yormy\\\\PromocodeLaravel\\\\Models\\\\PromocodeInvite\\|null\\.$#"
+			count: 1
+			path: src/Repositories/PromocodeInviteRepository.php
+
+		-
+			message: "#^Cannot call method refresh\\(\\) on Yormy\\\\PromocodeLaravel\\\\Models\\\\PromocodeInvite\\|null\\.$#"
+			count: 1
+			path: src/Repositories/PromocodeInviteRepository.php
+
+		-
+			message: "#^Cannot call method update\\(\\) on Yormy\\\\PromocodeLaravel\\\\Models\\\\PromocodeInvite\\|null\\.$#"
+			count: 1
+			path: src/Repositories/PromocodeInviteRepository.php
+
+		-
+			message: "#^Call to an undefined static method Yormy\\\\PromocodeLaravel\\\\Services\\\\PromocodeValidate\\:\\:getModel\\(\\)\\.$#"
+			count: 1
+			path: src/Services/PromocodeValidate.php
+
+		-
+			message: "#^Method Yormy\\\\PromocodeLaravel\\\\Services\\\\PromocodeValidate\\:\\:builderActive\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Services/PromocodeValidate.php
+
+		-
+			message: "#^Method Yormy\\\\PromocodeLaravel\\\\Services\\\\PromocodeValidate\\:\\:check\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Services/PromocodeValidate.php
+
+		-
+			message: "#^Method Yormy\\\\PromocodeLaravel\\\\Services\\\\PromocodeValidate\\:\\:checkForEmail\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Services/PromocodeValidate.php
+
+		-
+			message: "#^Method Yormy\\\\PromocodeLaravel\\\\Services\\\\PromocodeValidate\\:\\:checkForIp\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Services/PromocodeValidate.php
+
+		-
+			message: "#^Method Yormy\\\\PromocodeLaravel\\\\Services\\\\PromocodeValidate\\:\\:checkForUser\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Services/PromocodeValidate.php
+
+		-
+			message: "#^Method Yormy\\\\PromocodeLaravel\\\\Services\\\\PromocodeValidate\\:\\:checkForUser\\(\\) has parameter \\$user with no type specified\\.$#"
+			count: 1
+			path: src/Services/PromocodeValidate.php
+
+		-
+			message: "#^Method Yormy\\\\PromocodeLaravel\\\\Services\\\\PromocodeValidate\\:\\:getValid\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Services/PromocodeValidate.php
+
+		-
+			message: "#^Unsafe call to private method Yormy\\\\PromocodeLaravel\\\\Services\\\\PromocodeValidate\\:\\:builderActive\\(\\) through static\\:\\:\\.$#"
+			count: 4
+			path: src/Services/PromocodeValidate.php
+
+		-
+			message: "#^Method Yormy\\\\PromocodeLaravel\\\\Services\\\\PromocodeValidateInvite\\:\\:getModel\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Services/PromocodeValidateInvite.php
+
+		-
+			message: "#^Method Yormy\\\\PromocodeLaravel\\\\Services\\\\PromocodeValidateStripe\\:\\:getModel\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Services/PromocodeValidateStripe.php
