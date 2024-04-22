@@ -63,12 +63,12 @@ abstract class InviteCode extends BaseModel
         return max($this->uses_max - $this->uses_current, 0);
     }
 
-    public function getIsActiveAttribute(): int
+    public function getIsActiveAttribute(): bool
     {
         return $this->active_from <= Carbon::now() && ($this->expires_at > Carbon::now() || $this->expires_at === null);
     }
 
-    public function getIsAvailableAttribute(): int
+    public function getIsAvailableAttribute(): bool
     {
         return $this->is_active && $this->uses_left > 0;
     }
