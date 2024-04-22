@@ -34,7 +34,7 @@ class DiscountCodeController
     {
         $discountCodes = DiscountCodeStripe::all();
 
-        $dto = DiscountCodeDataResponse::collection($discountCodes);
+        $dto = DiscountCodeDataResponse::collect($discountCodes);
 
         return ApiResponse::withData($dto)->successResponse();
     }

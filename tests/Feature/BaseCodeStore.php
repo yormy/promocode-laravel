@@ -121,6 +121,7 @@ abstract class BaseCodeStore extends TestCase
      * @test
      *
      * @group promocode
+     * @group xxx
      */
     public function Code_CreateDuplicate_Failed()
     {

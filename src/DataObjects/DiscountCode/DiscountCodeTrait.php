@@ -6,6 +6,7 @@ namespace Yormy\PromocodeLaravel\DataObjects\DiscountCode;
 
 use Illuminate\Validation\Rule;
 use Spatie\LaravelData\Support\Validation\ValidationContext;
+use Yormy\PromocodeLaravel\Models\DiscountCodeStripe;
 
 trait DiscountCodeTrait
 {
@@ -28,7 +29,7 @@ trait DiscountCodeTrait
 
         $currentXid = collect($context->payload)->get('xid');
 
-        $rules['code'] = ['sometimes', 'string', 'max:10', Rule::unique('billing_promocodes_stripe')->ignore($currentXid, 'xid')];
+        $rules['code'] = ['sometimes', 'string', 'max:10', Rule::unique(((new DiscountCodeStripe())->getTable()))->ignore($currentXid, 'xid')];
 
         $rules['description_discount_amount_cents'] = [
             'required_without:description_discount_percentage',

@@ -6,6 +6,7 @@ namespace Yormy\PromocodeLaravel\DataObjects\InviteCode;
 
 use Illuminate\Validation\Rule;
 use Spatie\LaravelData\Support\Validation\ValidationContext;
+use Yormy\PromocodeLaravel\Models\PromocodeInvite;
 
 trait InviteCodeTrait
 {
@@ -15,7 +16,7 @@ trait InviteCodeTrait
 
         $currentXid = collect($context->payload)->get('xid');
 
-        $rules['code'] = ['sometimes', 'string', 'max:10', Rule::unique('billing_promocodes_stripe')->ignore($currentXid, 'xid')];
+        $rules['code'] = ['sometimes', 'string', 'max:10', Rule::unique((new PromocodeInvite())->getTable())->ignore($currentXid, 'xid')];
 
         return $rules;
     }

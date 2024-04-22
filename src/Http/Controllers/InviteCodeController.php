@@ -34,7 +34,7 @@ class InviteCodeController
     {
         $inviteCodes = PromocodeInvite::all();
 
-        $dto = InviteCodeDataResponse::collection($inviteCodes);
+        $dto = InviteCodeDataResponse::collect($inviteCodes);
 
         return ApiResponse::withData($dto)->successResponse();
     }
