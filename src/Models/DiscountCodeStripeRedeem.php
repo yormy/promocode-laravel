@@ -1,11 +1,11 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Yormy\PromocodeLaravel\Models;
 
-use Yormy\PromocodeLaravel\Repositories\PromocodeDiscountRedeemRepository;
-use Yormy\PromocodeLaravel\Repositories\PromocodeInviteRedeemRepository;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Yormy\CoreToolsLaravel\Traits\Factories\PackageFactoryTrait;
+use Yormy\PromocodeLaravel\Models\Scopes\AvailableScope;
+use Yormy\Xid\Models\Traits\Xid;
 
 /**
  * Yormy\PromocodeLaravel\Models\DiscountCodeStripe
@@ -21,31 +21,17 @@ use Yormy\PromocodeLaravel\Repositories\PromocodeInviteRedeemRepository;
  * @method static \Illuminate\Database\Eloquent\Builder|DiscountCodeStripe query()
  * @method static \Illuminate\Database\Eloquent\Builder|DiscountCodeStripe withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|DiscountCodeStripe withoutTrashed()
- *
  * @mixin \Eloquent
  */
-class DiscountCodeStripe extends InviteCode
+class DiscountCodeStripeRedeem extends BaseModel
 {
-    protected $table = 'billing_promocodes_stripe';
+    use Xid;
 
-    public function redeem($user): void
-    {
-        $this->increment('uses_current');
+    protected $table = 'billing_promocodes_stripe_redeem';
 
-        $promocodeDiscountRedeemRepository = new PromocodeDiscountRedeemRepository();
-        $promocodeDiscountRedeemRepository->create($this, $user);
-    }
-
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-
-        $fillables = [
-            'description_discount_percentage',
-            'description_discount_amount_cents',
-            'stripe_coupon_id',
-        ];
-
-        $this->fillable = array_merge($this->fillable, $fillables);
-    }
+    protected $fillable = [
+        'user_id',
+        'user_type',
+        'billing_promocode_stripe_id'
+    ];
 }

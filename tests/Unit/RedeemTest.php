@@ -4,6 +4,11 @@ namespace Yormy\PromocodeLaravel\Tests\Unit;
 
 use Yormy\PromocodeLaravel\Exceptions\InvalidCodeException;
 use Yormy\PromocodeLaravel\Models\DiscountCodeStripe;
+use Yormy\PromocodeLaravel\Models\DiscountCodeStripeRedeem;
+use Yormy\PromocodeLaravel\Models\InviteCode;
+use Yormy\PromocodeLaravel\Models\PromocodeInvite;
+use Yormy\PromocodeLaravel\Models\PromocodeInviteRedeem;
+use Yormy\PromocodeLaravel\Services\PromocodeValidateInvite;
 use Yormy\PromocodeLaravel\Services\PromocodeValidateStripe;
 use Yormy\PromocodeLaravel\Tests\TestCase;
 use Yormy\PromocodeLaravel\Tests\Traits\UserTrait;
@@ -17,13 +22,33 @@ class RedeemTest extends TestCase
      *
      * @group redeem
      */
-    public function Code_Redeem(): void
+    public function CodeDiscount_Redeem(): void
     {
+        $user = $this->createUser();
+
         $promocodeStripe = DiscountCodeStripe::factory()->create();
 
-        PromocodeValidateStripe::check($promocodeStripe->code)->redeem();
+        $startCount = DiscountCodeStripeRedeem::count();
+        PromocodeValidateStripe::check($promocodeStripe->code)->redeem($user);
 
-        $this->assertTrue(true);
+        $this->assertGreaterThan($startCount, DiscountCodeStripeRedeem::count());
+    }
+
+    /**
+     * @test
+     *
+     * @group redeem
+     */
+    public function CodeInvite_Redeem(): void
+    {
+        $user = $this->createUser();
+
+        $promocodeStripe = PromocodeInvite::factory()->create();
+
+        $startCount = PromocodeInviteRedeem::count();
+        PromocodeValidateInvite::check($promocodeStripe->code)->redeem($user);
+
+        $this->assertGreaterThan($startCount, PromocodeInviteRedeem::count());
     }
 
     /**
@@ -46,9 +71,10 @@ class RedeemTest extends TestCase
      */
     public function Code_RedeemTwice_Exception(): void
     {
+        $user = $this->createUser();
         $promocodeStripe = DiscountCodeStripe::factory()->create();
 
-        PromocodeValidateStripe::check($promocodeStripe->code)->redeem();
+        PromocodeValidateStripe::check($promocodeStripe->code)->redeem($user);
 
         $this->expectException(InvalidCodeException::class);
         PromocodeValidateStripe::check($promocodeStripe->code)->redeem();

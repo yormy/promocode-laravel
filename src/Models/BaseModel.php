@@ -21,11 +21,6 @@ class BaseModel extends Model
 {
     use Prunable;
 
-    public function redeem(): void
-    {
-        $this->increment('uses_current');
-    }
-
     public function prunable(): Builder
     {
         return static::whereColumn('uses_max', '=<', 'uses_current')

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 use Yormy\CoreToolsLaravel\Traits\Factories\PackageFactoryTrait;
 use Yormy\PromocodeLaravel\Models\Scopes\AvailableScope;
+use Yormy\PromocodeLaravel\Repositories\PromocodeInviteRedeemRepository;
 use Yormy\PromocodeLaravel\Services\CodeGenerator;
 use Yormy\Xid\Models\Traits\Xid;
 
