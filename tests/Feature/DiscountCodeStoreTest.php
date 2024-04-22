@@ -30,7 +30,8 @@ class DiscountCodeStoreTest extends BaseCodeStore
 
         $new = $data;
         $response = $this->json('POST', route(static::ROUTE_STORE), $new);
-        $response->assertJsonValidationErrorFor('description_discount_percentage');
+
+        $response->assertJsonValidationErrorFor('description_discount_amount_cents');
 
         $new = $data;
         $new['description_discount_percentage'] = 10;
