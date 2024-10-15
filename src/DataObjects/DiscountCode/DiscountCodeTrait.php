@@ -12,11 +12,12 @@ trait DiscountCodeTrait
 {
     public static function prepareForPipeline(array $properties): array
     {
-        if (array_key_exists('description_discount_percentage',$properties) && $properties['description_discount_percentage']=== null) {
+        if (array_key_exists('description_discount_percentage',$properties) && (int)$properties['description_discount_percentage'] === 0)
+        {
             unset($properties['description_discount_percentage']);
         }
 
-        if (array_key_exists('description_discount_amount_cents',$properties) && $properties['description_discount_amount_cents']=== null) {
+        if (array_key_exists('description_discount_amount_cents',$properties) && (int)$properties['description_discount_amount_cents'] === 0) {
             unset($properties['description_discount_amount_cents']);
         }
 
